@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倡议者联盟 - 组织文焕系统</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --primary-light: #757de8;
+            --primary-dark: #002984;
+            --secondary-color: #00bcd4;
+            --secondary-light: #62efff;
+            --secondary-dark: #008ba3;
+            --surface-light: #ffffff;
+            --surface-dark: #121212;
+            --text-primary-light: #212121;
+            --text-secondary-light: #757575;
+            --text-primary-dark: #ffffff;
+            --text-secondary-dark: #b0b0b0;
+        }
+        body {
+            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+        }
+        .material-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+        .material-btn {
+            padding: 10px 24px;
+            border-radius: See-through;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gradient-bg {
+            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        .section-heading {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        .dark .dark\:bg-surface-dark {
+            background-color: var(--surface-dark);
+        }
+        .dark .dark\:text-white {
+            color: var(--text-primary-dark);
+        }
+        .dark .dark\:text-secondary {
+            color: var(--text-secondary-dark);
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(63, 81, 181, 0.1);
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .dark .social-icon {
+            background-color: rgba(117, 125, 232, 0.2);
+            color: var(--primary-light);
+        }
+        .dark .social-icon:hover {
+            background-color: var(--primary-light);
+            color: var(--surface-dark);
+        }
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .dark .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0%;
+        }
+        /* Navigation drawer for mobile */
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+        }
+        .dark .drawer {
+            background-color: #1a1a1a;
+        }
+        .drawer.open {
+            right: 0;
+        }
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        .drawer-overlay.open {
+            display: block;
+        }
+        /* Advocate card styles */
+        .advocate-card {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .advocate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .advocate-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .dark .advocate-img {
+            border-color: #2d2d2d;
+        }
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .contact-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+        .dark .contact-link {
+            color: var(--primary-light);
+        }
+        .dark .contact-link:hover {
+            color: var(--secondary-light);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#757de8',
+                            DEFAULT: '#3f51b5',
+                            dark: '#002984',
+                        },
+                        secondary: {
+                            light: '#62efff',
+                            DEFAULT: '#00bcd4',
+                            dark: '#008ba3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-white transition-all duration-300">
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <!-- 导航栏 -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg py-4 sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-light dark:bg-primary-dark">
+                        <i class="fas fa-atom text-white text-xl"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-primary-light to-secondary bg-clip-text text-transparent">组织文焕 <span class="text-sm font-medium">Organizational Culture Transformation System</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#core-concepts" class="font-medium hover:text-primary transition-colors">核心理念</a>
+                    <a href="index.html#culture-values" class="font-medium hover:text-primary transition-colors">文化价值</a>
+                    <a href="index.html#leadership" class="font-medium hover:text-primary transition-colors">领导力体系</a>
+                    <a href="index.html#tools" class="font-medium hover:text-primary transition-colors">工具包</a>
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                    </button>
+                </div>
+                <div class="block md:hidden">
+                    <button id="menu-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Navigation Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-xl font-bold">导航菜单</h3>
+                <button id="close-drawer" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <a href="index.html#core-concepts" class="py-2 font-medium hover:text-primary transition-colors">核心理念</a>
+                <a href="index.html#culture-values" class="py-2 font-medium hover:text-primary transition-colors">文化价值</a>
+                <a href="index.html#leadership" class="py-2 font-medium hover:text-primary transition-colors">领导力体系</a>
+                <a href="index.html#tools" class="py-2 font-medium hover:text-primary transition-colors">工具包</a>
+                <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <button id="mobile-theme-toggle" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 transition-colors">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                        </div>
+                        <span class="font-medium">切换主题</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主体内容 -->
+    <main class="container mx-auto py-8 px-6">
+        <!-- 英雄区域 -->
+        <section class="py-16 rounded-3xl mb-16 gradient-bg relative overflow-hidden" data-aos="fade-up">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute top-10 right-10 w-32 h-32 rounded-full bg-white opacity-10"></div>
+                <div class="absolute bottom-10 left-20 w-24 h-24 rounded-full bg-white opacity-10"></div>
+                <div class="absolute top-1/2 left-1/3 w-48 h-48 rounded-full bg-white opacity-5"></div>
+            </div>
+            <div class="relative z-10 w-full mx-auto text-center px-6">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-up" data-aos-delay="100">
+                    倡议者联盟
+                </h1>
+                <p class="text-xl md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    汇聚各行各业的文化变革推动者，共同推进组织文焕运动
+                </p>
+            </div>
+        </section>
+
+        <!-- 联盟介绍 -->
+        <section class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold section-heading">关于联盟</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-10 max-w-3xl text-lg">
+                组织文焕倡议者联盟由一群致力于推动组织文化变革的实践者组成。我们来自不同行业和领域，但都有共同的愿景：通过科学方法论构建健康、高效、创新的组织文化，帮助组织在不确定性中保持韧性和活力。
+            </p>
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-2xl font-bold mb-6 text-primary-dark dark:text-primary-light">联盟使命</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl">
+                        <div class="w-16 h-16 rounded-full bg-primary-light/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-lightbulb text-primary-light text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-3">知识共享</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            分享组织文化转型的最佳实践、案例和工具，促进跨行业的知识交流
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl">
+                        <div class="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-users text-secondary text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-3">社区建设</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            构建一个互助互利的文化变革实践者社区，共同探索和解决组织发展中的挑战
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-xl">
+                        <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-rocket text-green-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-3">推动创新</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            基于科学方法论，不断创新组织文化建设的理论和实践，推动管理思想的进步
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 倡议者列表 -->
+        <section class="mb-20" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold section-heading">核心倡议者</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-10 max-w-3xl text-lg">
+                认识我们的核心倡议者，他们在各自领域推动着组织文化的创新与变革。
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 倡议者 1 -->
+                <div class="advocate-card bg-white dark:bg-gray-800 p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="ChrisHanPortrait.jpg" 
+                             alt="Chris Han" class="advocate-img mb-4">
+                        <h3 class="text-xl font-bold">Chris Han</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">组织文焕发起人</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            前微软技术中心首席架构师，专注于组织变革与数字化转型的交叉领域研究，提出"文焕系统"理论框架。
+                        </p>
+                        <a href="mailto:chris.han@mightytech.cn" class="contact-link">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>联系我</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 倡议者 2 -->
+                <div class="advocate-card bg-white dark:bg-gray-800 p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1961&q=80" 
+                             alt="李明" class="advocate-img mb-4">
+                        <h3 class="text-xl font-bold">Kelly Anderson</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">企业文化顾问</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            资深组织发展顾问，曾服务超过50家大型企业的文化转型项目，专注于将系统论应用于组织变革。
+                        </p>
+                        <a href="mailto:contact@example.com" class="contact-link">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>联系我</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 倡议者 3 -->
+                <div class="advocate-card bg-white dark:bg-gray-800 p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+                             alt="张伟" class="advocate-img mb-4">
+                        <h3 class="text-xl font-bold">Jeffrey Collins</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">科技公司CEO</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            连续创业者，将"文焕系统"应用于自己的创业公司，实现了高速增长与健康文化的平衡。
+                        </p>
+                        <a href="mailto:contact@example.com" class="contact-link">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>联系我</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 倡议者 4 -->
+                <div class="advocate-card bg-white dark:bg-gray-800 p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" 
+                             alt="王芳" class="advocate-img mb-4">
+                        <h3 class="text-xl font-bold">王芳</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">人力资源总监</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            资深HR专家，专注于将文化价值观转化为可衡量的行为标准，建立了创新的人才评估体系。
+                        </p>
+                        <a href="mailto:contact@example.com" class="contact-link">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>联系我</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 倡议者 5 -->
+                <div class="advocate-card bg-white dark:bg-gray-800 p-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+                             alt="刘强" class="advocate-img mb-4">
+                        <h3 class="text-xl font-bold">刘强</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">管理学教授</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            知名商学院教授，将复杂系统理论与组织行为学相结合，为"文焕系统"提供学术支持。
+                        </p>
+                        <a href="mailto:contact@example.com" class="contact-link">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>联系我</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 倡议者 6 -->
+                <div class="advocate-card bg-white dark:bg-gray-800 p-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="SimonSinek.png" 
+                             alt="Simon Sinek" class="advocate-img mb-4">
+                        <h3 class="text-xl font-bold">Simon Sinek</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">组织发展专家</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-medium"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            专注于企业文化转型中的文化适应问题，著有畅销书《Start with Why》 和 《The Infinite Game》 。
+                        </p>
+                        <a href="mailto:contact@example.com" class="contact-link">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>联系我</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 加入我们 -->
+        <section class="mb-20 bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8 md:p-12" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-2/3 mb-8 md:mb-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">加入倡议者联盟</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        如果您在组织文化建设领域有丰富经验，并希望与志同道合的专业人士共同推动组织文化的创新与发展，欢迎加入我们的倡议者联盟。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="material-btn bg-primary text-white px-6 py-3 rounded-full">
+                            申请加入
+                        </a>
+                        <a href="mailto:chris.han@mightytech.cn" class="material-btn border-2 border-primary text-primary dark:text-primary-light px-6 py-3 rounded-full">
+                            联系我们
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" 
+                         alt="团队合作" 
+                         class="w-64 h-64 object-cover rounded-full shadow-lg">
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 页脚 -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-light dark:bg-primary-dark">
+                            <i class="fas fa-atom text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">组织文焕</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        基于科学方法论构建的组织文化转型体系，为焕发组织执行力和创造力提供内在驱动。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#core-concepts" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">核心理念</a></li>
+                        <li><a href="index.html#culture-values" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">文化价值</a></li>
+                        <li><a href="index.html#leadership" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">领导力体系</a></li>
+                        <li><a href="index.html#tools" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">工具包</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">资源中心</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">白皮书</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">案例研究</a></li>
+                        <li><a href="advocates.html" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">倡议者联盟</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">常见问题</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-600 dark:text-gray-300">chris.han@mightytech.cn</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <img src="p7prv2ctfr.png" alt="公众号二维码" class="w-48 rounded-lg shadow-md" />
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    2025 Chris Han. MIT许可，自由Remix但请保留原始版权声明
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm">隐私政策</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm">使用条款</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm">Cookie 设置</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-white opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    <!-- AOS Animation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // 初始化AOS动画库
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50
+            });
+        });
+        // 主题切换功能
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const html = document.documentElement;
+        // 检查本地存储或系统偏好
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        // 切换主题函数
+        function toggleTheme() {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        }
+        // 桌面主题切换
+        themeToggle.addEventListener('click', toggleTheme);
+        // 移动端主题切换
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+        // 移动导航抽屉
+        const menuToggle = document.getElementById('menu-toggle');
+        const drawer = document.getElementById('drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const closeDrawer = document.getElementById('close-drawer');
+        menuToggle.addEventListener('click', function() {
+            drawer.classList.add('open');
+            drawerOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+        function closeDrawerFunc() {
+            drawer.classList.remove('open');
+            drawerOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        closeDrawer.addEventListener('click', closeDrawerFunc);
+        drawerOverlay.addEventListener('click', closeDrawerFunc);
+        // 移动导航中的链接点击后关闭抽屉
+        drawer.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                closeDrawerFunc();
+            });
+        });
+        // 滚动进度条
+        window.onscroll = function() {
+            // 滚动进度
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+            // 返回顶部按钮
+            const backToTopButton = document.getElementById('back-to-top');
+            if (winScroll > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        };
+        // 返回顶部按钮点击事件
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
