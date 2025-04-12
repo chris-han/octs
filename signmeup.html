@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申请加入倡议者联盟 - 组织文焕系统</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --primary-light: #757de8;
+            --primary-dark: #002984;
+            --secondary-color: #00bcd4;
+            --secondary-light: #62efff;
+            --secondary-dark: #008ba3;
+            --surface-light: #ffffff;
+            --surface-dark: #121212;
+            --text-primary-light: #212121;
+            --text-secondary-light: #757575;
+            --text-primary-dark: #ffffff;
+            --text-secondary-dark: #b0b0b0;
+        }
+        body {
+            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+        }
+        .material-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+        .material-btn {
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gradient-bg {
+            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        .section-heading {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        .dark .dark\:bg-surface-dark {
+            background-color: var(--surface-dark);
+        }
+        .dark .dark\:text-white {
+            color: var(--text-primary-dark);
+        }
+        .dark .dark\:text-secondary {
+            color: var(--text-secondary-dark);
+        }
+        .form-input {
+            @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:border-gray-700 dark:text-white transition duration-300;
+        }
+        .form-label {
+            @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+        }
+        .form-checkbox {
+            @apply h-5 w-5 text-primary border-gray-300 rounded focus:ring-primary dark:border-gray-600 dark:bg-gray-700;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#757de8',
+                            DEFAULT: '#3f51b5',
+                            dark: '#002984',
+                        },
+                        secondary: {
+                            light: '#62efff',
+                            DEFAULT: '#00bcd4',
+                            dark: '#008ba3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-white transition-all duration-300">
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg py-4 sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-light dark:bg-primary-dark overflow-hidden">
+                        <a href="index.html">
+                            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+                                <!-- SVG content from original page -->
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-primary-light to-secondary bg-clip-text text-transparent">组织文焕 <span class="text-sm font-medium">Organizational Culture Transformation System</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#core-concepts" class="font-medium hover:text-primary transition-colors">核心理念</a>
+                    <a href="index.html#culture-values" class="font-medium hover:text-primary transition-colors">文化价值</a>
+                    <a href="index.html#leadership" class="font-medium hover:text-primary transition-colors">领导力体系</a>
+                    <a href="index.html#tools" class="font-medium hover:text-primary transition-colors">工具包</a>
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                    </button>
+                </div>
+                <div class="block md:hidden">
+                    <button id="menu-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <!-- Drawer content from original page -->
+    </div>
+
+    <!-- 主体内容 -->
+    <main class="container mx-auto py-8 px-6">
+        <!-- 页面标题 -->
+        <section class="py-16 rounded-3xl mb-16 gradient-bg relative overflow-hidden" data-aos="fade-up">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute top-10 right-10 w-32 h-32 rounded-full bg-white opacity-10"></div>
+                <div class="absolute bottom-10 left-20 w-24 h-24 rounded-full bg-white opacity-10"></div>
+                <div class="absolute top-1/2 left-1/3 w-48 h-48 rounded-full bg-white opacity-5"></div>
+            </div>
+            <div class="relative z-10 w-full mx-auto text-center px-6">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-up" data-aos-delay="100">
+                    申请加入倡议者联盟
+                </h1>
+                <p class="text-xl md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    与志同道合的专业人士一起，推动组织文化的创新与变革
+                </p>
+            </div>
+        </section>
+
+        <!-- 申请表单 -->
+        <section class="max-w-3xl mx-auto">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg" data-aos="fade-up">
+                <form id="join-form" class="space-y-6" netlify>
+                    <!-- 基本信息 -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-4">基本信息</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="form-label" for="name">姓名</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            
+                            <div>
+                                <label class="form-label" for="email">电子邮箱</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="form-label" for="phone">联系电话</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+                            
+                            <div>
+                                <label class="form-label" for="organization">所属组织</label>
+                                <input type="text" id="organization" name="organization" class="form-input">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="position">职位</label>
+                            <input type="text" id="position" name="position" class="form-input">
+                        </div>
+                    </div>
+
+                    <!-- 专业背景 -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-4">专业背景</h3>
+                        
+                        <div>
+                            <label class="form-label" for="experience">组织文化建设经验（年）</label>
+                            <select id="experience" name="experience" class="form-input">
+                                <option value="1-3">1-3年</option>
+                                <option value="4-6">4-6年</option>
+                                <option value="7-10">7-10年</option>
+                                <option value="10+">10年以上</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="expertise">专业领域（可多选）</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" name="expertise" value="culture-transformation" class="form-checkbox">
+                                    <span class="text-sm">文化转型</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" name="expertise" value="leadership-development" class="form-checkbox">
+                                    <span class="text-sm">领导力发展</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" name="expertise" value="change-management" class="form-checkbox">
+                                    <span class="text-sm">变革管理</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" name="expertise" value="organizational-development" class="form-checkbox">
+                                    <span class="text-sm">组织发展</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="achievements">主要成就和案例经验</label>
+                            <textarea id="achievements" name="achievements" rows="4" class="form-input" placeholder="请简述您在组织文化建设方面的主要成就和具体案例经验"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 申请说明 -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-4">申请说明</h3>
+                        
+                        <div>
+                            <label class="form-label" for="motivation">加入动机</label>
+                            <textarea id="motivation" name="motivation" rows="4" class="form-input" placeholder="请说明您希望加入倡议者联盟的原因和期望"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="contribution">期望贡献</label>
+                            <textarea id="contribution" name="contribution" rows="4" class="form-input" placeholder="请描述您计划如何为联盟发展做出贡献"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 确认和提交 -->
+                    <div class="space-y-4">
+                        <label class="flex items-start space-x-3">
+                            <input type="checkbox" required class="form-checkbox mt-1">
+                            <span class="text-sm">我同意联盟将收集的信息用于审核目的，并遵守相关隐私政策</span>
+                        </label>
+
+                        <div class="flex justify-center pt-6">
+                            <button type="submit" class="material-btn gradient-bg px-12 py-4 rounded-full text-lg font-medium hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                                提交申请
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-12 mt-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-light dark:bg-primary-dark overflow-hidden">
+                            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+                                <!-- SVG content from original page -->
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold">组织文焕</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        基于科学方法论构建的组织文化转型体系，为焕发组织执行力和创造力提供内在驱动。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#core-concepts" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">核心理念</a></li>
+                        <li><a href="index.html#culture-values" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">文化价值</a></li>
+                        <li><a href="index.html#leadership" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">领导力体系</a></li>
+                        <li><a href="index.html#tools" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">工具包</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">资源中心</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">白皮书</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">案例研究</a></li>
+                        <li><a href="advocates.html" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">倡议者联盟</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">常见问题</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-600 dark:text-gray-300">chris.han@mightytech.cn</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center space-x-2">
+                        <img src="qrcode.jpg" alt="微信公众号" class="w-24 h-24">
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">扫描关注公众号</p>
+                            <p class="text-sm font-medium">系统之美</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    2025 Chris Han. MIT许可，自由Remix但请保留原始版权声明
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm">隐私政策</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm">使用条款</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm">Cookie 设置</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-white opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- AOS Animation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+
+        // Form submission handler
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically handle the form submission
+            alert('感谢您的申请！我们将尽快审核并与您联系。');
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', function() {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Scroll progress bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+
+            // Back to top button visibility
+            const backToTopButton = document.getElementById('back-to-top');
+            if (winScroll > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        };
+
+        // Back to top button click handler
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
