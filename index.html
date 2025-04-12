@@ -297,9 +297,9 @@
             </div>
         </section>
         <!-- 领导力体系 -->
-<section id="leadership" class="mb-20" data-aos="fade-up">
+        <section id="leadership" class="mb-20" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold section-heading">干部领导力赋能体系</h2>
-<p class="text-gray-600 dark:text-gray-300 mb-10 max-w-3xl text-lg">
+            <p class="text-gray-600 dark:text-gray-300 mb-10 max-w-3xl text-lg">
                 "政治路线确定之后，干部就是决定的因素。" ——毛泽东<br>
                 我们的领导力赋能体系基于系统论和控制论原理，通过科学方法提升管理者带领团队的能力。
             </p>
@@ -503,9 +503,9 @@
                 我们提供一系列实用工具，帮助组织将文化理念转化为具体实践，促进文化落地与内化。
             </p>
             <!-- 四环布局 -->
-<div class="hex-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 30px 0; width: 100%;">
+            <div class="hex-grid" style="display: flex; flex-wrap: wrap; justify-content: center; width: 100%;">
                 <!-- 熵减工具箱 (红色圆环) -->
-                <div class="hex-item bg-red-500 dark:bg-red-600" style="background: radial-gradient(circle, rgba(239,68,68,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 10; width: 270px; height: 270px; padding-top: 0; margin-right: -30px; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="100">
+                <div class="hex-item bg-red-500 dark:bg-red-600" style="background: radial-gradient(circle, rgba(239,68,68,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 10; width: 270px; height: 270px; padding-top: 0; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="100">
                     <div class="hex-content">
                         <i class="fas fa-random text-white text-4xl mb-4"></i>
                         <h3 class="text-white text-lg font-bold mb-2">熵减工具箱</h3>
@@ -513,7 +513,7 @@
                     </div>
                 </div>
                 <!-- 诚信增强器 (黄色圆环) -->
-                <div class="hex-item bg-yellow-500 dark:bg-yellow-600" style="background: radial-gradient(circle, rgba(234,179,8,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 11; width: 270px; height: 270px; padding-top: 0; margin-left: -30px; margin-right: -30px; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="200">
+                <div class="hex-item bg-yellow-500 dark:bg-yellow-600" style="background: radial-gradient(circle, rgba(234,179,8,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 11; width: 270px; height: 270px; padding-top: 0; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="200">
                     <div class="hex-content">
                         <i class="fas fa-handshake text-white text-4xl mb-4"></i>
                         <h3 class="text-white text-lg font-bold mb-2">诚信增强器</h3>
@@ -521,7 +521,7 @@
                     </div>
                 </div>
                 <!-- 贝叶斯思维训练 (蓝色圆环) -->
-                <div class="hex-item bg-blue-500 dark:bg-blue-600" style="background: radial-gradient(circle, rgba(59,130,246,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 12; width: 270px; height: 270px; padding-top: 0; margin-left: -30px; margin-right: -30px; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="300">
+                <div class="hex-item bg-blue-500 dark:bg-blue-600" style="background: radial-gradient(circle, rgba(59,130,246,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 12; width: 270px; height: 270px; padding-top: 0; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="300">
                     <div class="hex-content">
                         <i class="fas fa-dice text-white text-4xl mb-4"></i>
                         <h3 class="text-white text-lg font-bold mb-2">贝叶斯思维训练</h3>
@@ -529,7 +529,7 @@
                     </div>
                 </div>
                 <!-- 设计思维引导 (绿色圆环) -->
-                <div class="hex-item bg-green-500 dark:bg-green-600" style="background: radial-gradient(circle, rgba(34,197,94,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 13; width: 270px; height: 270px; padding-top: 0; margin-left: -30px; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="400">
+                <div class="hex-item bg-green-500 dark:bg-green-600" style="background: radial-gradient(circle, rgba(34,197,94,0.9) 90%, rgba(0,0,0,0) 90%); position: relative; z-index: 13; width: 270px; height: 270px; padding-top: 0; border-radius: 50%;" data-aos="zoom-in" data-aos-delay="400">
                     <div class="hex-content">
                         <i class="fas fa-lightbulb text-white text-4xl mb-4"></i>
                         <h3 class="text-white text-lg font-bold mb-2">设计思维引导</h3>
@@ -996,92 +996,118 @@
         
         /* Replace the existing hex-grid related styles */
 
+
+
+/* Base styles for hex-grid */
 .hex-grid {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 30px 0;
-    width: 100%;
-    margin: 0 auto;
 }
 
 .hex-item {
     position: relative;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    aspect-ratio: 1; /* Force perfect circle */
 }
 
-/* Desktop view (4 items) */
-@media (min-width: 1024px) {
+/* Mobile view (1 column) */
+@media (max-width: 639.98px) {
     .hex-grid {
-        gap: 30px;
-        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        width: 100%;
     }
+    
     .hex-item {
-        width: 270px;
-        height: 270px;
+        width: 200px;
+        height: 200px;
+        margin: -30px 0 0 0 !important;
     }
-    .hex-content i {
-        font-size: 2.5rem;
-    }
-    .hex-content h3 {
-        font-size: 1.25rem;
-    }
-    .hex-content p {
-        font-size: 0.875rem;
+    
+    .hex-item:first-child {
+        margin-top: 0 !important;
     }
 }
 
 /* Tablet view (2x2 grid) */
-@media (min-width: 640px) and (max-width: 1023px) {
+@media (min-width: 640px) and (max-width: 1023.98px) {
     .hex-grid {
-        gap: 20px;
-        max-width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: fit-content;
+        margin: 0 auto;
+        max-width: 480px; /* 2 * 240px */
     }
+    
     .hex-item {
         width: 240px;
         height: 240px;
+        position: relative;
     }
-    .hex-content i {
-        font-size: 2.25rem;
+    
+    /* First row */
+    .hex-item:nth-child(1) {
+        margin-right: -30px;
     }
-    .hex-content h3 {
-        font-size: 1.125rem;
+    
+    .hex-item:nth-child(2) {
+        margin-left: -30px;
     }
-    .hex-content p {
-        font-size: 0.8rem;
+    
+    /* Second row */
+    .hex-item:nth-child(3) {
+        margin: -30px -30px 0 0;
+    }
+    
+    .hex-item:nth-child(4) {
+        margin: -30px 0 0 -30px;
     }
 }
 
-/* Mobile view (1 column) */
-@media (max-width: 639px) {
-    .hex-grid {
-        gap: 15px;
-        padding: 30px 20px;
-    }
+/* Desktop view */
+@media (min-width: 1024px) {
     .hex-item {
-        width: 200px;
-        height: 200px;
+        width: 270px;
+        height: 270px;
     }
-    .hex-content i {
-        font-size: 2rem;
+
+    .hex-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    .hex-content h3 {
-        font-size: 1rem;
+    
+    .hex-item:nth-of-type(1) {
+        margin-right: -30px;
     }
-    .hex-content p {
-        font-size: 0.75rem;
+    
+    .hex-item:nth-of-type(2) {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    
+    .hex-item:nth-of-type(3) {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    
+    .hex-item:nth-of-type(4) {
+        margin-left: -30px;
     }
 }
 
 .hex-content {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1094,94 +1120,9 @@
     transform: scale(1.05);
     z-index: 1;
 }
-
-.hex-content i {
-    margin-bottom: 0.75rem;
-}
-
-.hex-content h3 {
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-}
-
-.hex-content p {
-    line-height: 1.4;
-}
         
-        .section-heading {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        .section-heading:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-        .dark .dark\:bg-surface-dark {
-            background-color: var(--surface-dark);
-        }
-        .dark .dark\:text-white {
-            color: var(--text-primary-dark);
-        }
-        .dark .dark\:text-secondary {
-            color: var(--text-secondary-dark);
-        }
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgba(63, 81, 181, 0.1);
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-        .dark .social-icon {
-            background-color: rgba(117, 125, 232, 0.2);
-            color: var(--primary-light);
-        }
-        .dark .social-icon:hover {
-            background-color: var(--primary-light);
-            color: var(--surface-dark);
-        }
-        /* Tooltip */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 200px;
-            background-color: #323232;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 10px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-        /* Progress bar */
+
+/* Progress bar */
         .progress-container {
             width: 100%;
             height: 4px;
@@ -1195,8 +1136,42 @@
             background: rgba(255, 255, 255, 0.1);
         }
         .progress-bar {
+
+/* Tablet view (2x2 grid but smaller) */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .hex-grid {
+        grid-template-columns: repeat(2, 240px);
+        gap: 20px;
+    }
+    .hex-content i {
+        font-size: 2.25rem;
+    }
+    .hex-content h3 {
+        font-size: 1.125rem;
+    }
             height: 4px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    .hex-content p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile view (1 column) */
+@media (max-width: 639px) {
+    .hex-grid {
+        grid-template-columns: 200px;
+        gap: 15px;
+    }
+    .hex-content i {
+        font-size: 2rem;
+    }
+    .hex-content h3 {
+        font-size: 1rem;
+    }
+    .hex-content p {
+        font-size: 0.75rem;
+    }
+}
             width: 0%;
         }
         /* Navigation drawer for mobile */
