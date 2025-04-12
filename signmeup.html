@@ -93,7 +93,16 @@
             color: var(--text-secondary-dark);
         }
         .form-input {
-            @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:border-gray-700 dark:text-white transition duration-300;
+            @apply w-full px-4 py-3 rounded-lg 
+            border border-gray-300 
+            bg-transparent
+            focus:outline-none focus:ring-2 
+            focus:ring-primary 
+            focus:border-transparent 
+            
+            dark:border-gray-700 
+            dark:text-white 
+            transition duration-300;
         }
         .form-label {
             @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
@@ -101,6 +110,198 @@
         .form-checkbox {
             @apply h-5 w-5 text-primary border-gray-300 rounded focus:ring-primary dark:border-gray-600 dark:bg-gray-700;
         }
+        /* Custom form styles */
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #4B5563;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Dark mode styles */
+.dark .form-input,
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="tel"],
+.dark input[type="number"],
+.dark select,
+.dark textarea {
+    border-color: #9CA3AF;
+    color: #ffffff;
+}
+
+/* Focus states - modified to keep border */
+.form-input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+/* Dark mode input styles */
+.dark .form-input,
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="tel"],
+.dark input[type="number"],
+.dark select,
+.dark textarea {
+    border-color: #9CA3AF;
+    color: #ffffff;
+}
+
+/* Dark mode focus states */
+.dark .form-input:focus,
+.dark input[type="text"]:focus,
+.dark input[type="email"]:focus,
+.dark input[type="tel"]:focus,
+.dark input[type="number"]:focus,
+.dark select:focus,
+.dark textarea:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 1px var(--primary-light);
+}
+
+/* Checkbox specific styles */
+input[type="checkbox"].form-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #4B5563;
+    border-radius: 0.25rem;
+    background-color: transparent;
+}
+
+.dark input[type="checkbox"].form-checkbox {
+    border-color: #9CA3AF;
+}
+
+input[type="checkbox"].form-checkbox:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Add these specific styles for select elements */
+select.form-input {
+    appearance: none; /* Remove default select styling */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* Dark mode select arrow */
+.dark select.form-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Style for select options */
+select.form-input option {
+    background-color: white;
+    color: #1F2937;
+    padding: 0.5rem;
+}
+
+.dark select.form-input option {
+    background-color: #1F2937;
+    color: white;
+}
+
+/* Remove color change on option hover in Firefox */
+select.form-input option:hover,
+select.form-input option:checked {
+    box-shadow: 0 0 10px 100px #4B5563 inset;
+}
+
+.dark select.form-input option:hover,
+.dark select.form-input option:checked {
+    box-shadow: 0 0 10px 100px #6B7280 inset;
+}
+
+/* Custom checkbox styles */
+.checkbox-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.form-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #4B5563;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    margin-top: 0.25rem;
+}
+
+
+.dark .form-checkbox {
+    border-color: #9CA3AF;
+}
+
+/* Checkbox checked state */
+.form-checkbox:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Custom checkmark */
+.form-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Focus state */
+/* Checkbox focus - modified to keep border */
+.form-checkbox:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+/* Dark mode checkbox focus */
+.dark .form-checkbox:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 1px var(--primary-light);
+}
+
+/* Checkbox label */
+.checkbox-label {
+    font-size: 0.875rem;
+    color: #4B5563;
+    cursor: pointer;
+}
+
+.dark .checkbox-label {
+    color: #9CA3AF;
+}
     </style>
     <script>
         tailwind.config = {
@@ -210,7 +411,7 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="form-label" for="phone">联系电话</label>
+                                <label class="form-label" for="phone">手机</label>
                                 <input type="tel" id="phone" name="phone" class="form-input">
                             </div>
                             
@@ -242,29 +443,31 @@
 
                         <div>
                             <label class="form-label" for="expertise">专业领域（可多选）</label>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <label class="flex items-center space-x-3">
-                                    <input type="checkbox" name="expertise" value="culture-transformation" class="form-checkbox">
-                                    <span class="text-sm">文化转型</span>
-                                </label>
-                                <label class="flex items-center space-x-3">
-                                    <input type="checkbox" name="expertise" value="leadership-development" class="form-checkbox">
-                                    <span class="text-sm">领导力发展</span>
-                                </label>
-                                <label class="flex items-center space-x-3">
-                                    <input type="checkbox" name="expertise" value="change-management" class="form-checkbox">
-                                    <span class="text-sm">变革管理</span>
-                                </label>
-                                <label class="flex items-center space-x-3">
-                                    <input type="checkbox" name="expertise" value="organizational-development" class="form-checkbox">
-                                    <span class="text-sm">组织发展</span>
-                                </label>
-                            </div>
+ <!-- For expertise checkboxes -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="expertise" value="culture-transformation" class="form-checkbox">
+        <label class="checkbox-label">文化转型</label>
+    </div>
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="expertise" value="leadership-development" class="form-checkbox">
+        <label class="checkbox-label">领导力发展</label>
+    </div>
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="expertise" value="change-management" class="form-checkbox">
+        <label class="checkbox-label">变革管理</label>
+    </div>
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="expertise" value="organizational-development" class="form-checkbox">
+        <label class="checkbox-label">组织发展</label>
+    </div>
+</div>
                         </div>
 
                         <div>
                             <label class="form-label" for="achievements">主要成就和案例经验</label>
-                            <textarea id="achievements" name="achievements" rows="4" class="form-input" placeholder="请简述您在组织文化建设方面的主要成就和具体案例经验"></textarea>
+                            <br/>
+                            <textarea id="achievements" name="achievements" rows="4" class="form-input" placeholder="请简述您在组织文化建设方面的主要成就和具体案例经验" style="width:100%"></textarea>
                         </div>
                     </div>
 
@@ -274,21 +477,24 @@
                         
                         <div>
                             <label class="form-label" for="motivation">加入动机</label>
-                            <textarea id="motivation" name="motivation" rows="4" class="form-input" placeholder="请说明您希望加入倡议者联盟的原因和期望"></textarea>
+                            </br>
+                            <textarea id="motivation" name="motivation" rows="4" class="form-input" placeholder="请说明您希望加入倡议者联盟的原因和期望"  style="width:100%"></textarea>
                         </div>
 
                         <div>
                             <label class="form-label" for="contribution">期望贡献</label>
-                            <textarea id="contribution" name="contribution" rows="4" class="form-input" placeholder="请描述您计划如何为联盟发展做出贡献"></textarea>
+                            </br>
+                            <textarea id="contribution" name="contribution" rows="4" class="form-input" placeholder="请描述您计划如何为联盟发展做出贡献"  style="width:100%"></textarea>
                         </div>
                     </div>
 
                     <!-- 确认和提交 -->
                     <div class="space-y-4">
-                        <label class="flex items-start space-x-3">
-                            <input type="checkbox" required class="form-checkbox mt-1">
-                            <span class="text-sm">我同意联盟将收集的信息用于审核目的，并遵守相关隐私政策</span>
-                        </label>
+<!-- For terms agreement checkbox -->
+<div class="checkbox-wrapper">
+    <input type="checkbox" required class="form-checkbox">
+    <label class="checkbox-label">我同意联盟将收集的信息用于审核目的，并遵守相关隐私政策</label>
+</div>
 
                         <div class="flex justify-center pt-6">
                             <button type="submit" class="material-btn gradient-bg px-12 py-4 rounded-full text-lg font-medium hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
