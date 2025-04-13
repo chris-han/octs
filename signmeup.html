@@ -111,20 +111,20 @@
             @apply h-5 w-5 text-primary border-gray-300 rounded focus:ring-primary dark:border-gray-600 dark:bg-gray-700;
         }
         /* Custom form styles */
-.form-input,
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-select,
-textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid #4B5563;
-    background-color: transparent;
-    transition: all 0.3s ease;
-}
+        .form-input,
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #4B5563;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
 
 /* Dark mode styles */
 .dark .form-input,
@@ -455,7 +455,7 @@ select.form-input option:checked {
         <!-- 申请表单 -->
         <section class="max-w-3xl mx-auto">
             <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg" data-aos="fade-up">
-                <form id="join-form" class="space-y-6" method="POST" netlify>
+                <form id="join-form" class="space-y-6" method="POST" netlify data-netlify-honeypot="bot-field">
                     <!-- 基本信息 -->
                     <div class="space-y-4">
                         <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-4">基本信息</h3>
@@ -564,6 +564,7 @@ select.form-input option:checked {
                                 提交申请
                             </button>
                         </div>
+                                <input type="hidden" name="next" value="/thankyou.html" />
                     </div>
                 </form>
             </div>
@@ -1693,12 +1694,7 @@ select.form-input option:checked {
             offset: 50
         });
 
-        // Form submission handler
-        document.getElementById('join-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically handle the form submission
-            alert('感谢您的申请！我们将尽快审核并与您联系。');
-        });
+
 
         // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
