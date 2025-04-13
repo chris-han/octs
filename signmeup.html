@@ -11,18 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Font Awesome -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Common Styles -->
     <link rel="stylesheet" href="styles/main.css">
-    <!-- Page Specific Styles -->
-    <link rel="stylesheet" href="styles/signmeup.css">
+    <!-- 自定义样式 -->
     <style>
-        /* Form specific styles */
+        /* Base form styles */
         .form-input {
             @apply w-full px-4 py-3 rounded-lg 
             border border-gray-300 
@@ -30,7 +28,6 @@
             focus:outline-none focus:ring-2 
             focus:ring-primary 
             focus:border-transparent 
-            
             dark:border-gray-700 
             dark:text-white 
             transition duration-300;
@@ -44,7 +41,7 @@
             @apply h-5 w-5 text-primary border-gray-300 rounded focus:ring-primary dark:border-gray-600 dark:bg-gray-700;
         }
 
-        /* Custom form styles */
+        /* Form input styles */
         .form-input,
         input[type="text"],
         input[type="email"],
@@ -60,31 +57,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Dark mode styles */
-        .dark .form-input,
-        .dark input[type="text"],
-        .dark input[type="email"],
-        .dark input[type="tel"],
-        .dark input[type="number"],
-        .dark select,
-        .dark textarea {
-            border-color: #9CA3AF;
-            color: #ffffff;
-        }
-
-        /* Focus states - modified to keep border */
-        .form-input:focus,
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        input[type="number"]:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 1px var(--primary-color);
-        }
-
         /* Dark mode input styles */
         .dark .form-input,
         .dark input[type="text"],
@@ -95,6 +67,19 @@
         .dark textarea {
             border-color: #9CA3AF;
             color: #ffffff;
+        }
+
+        /* Focus states */
+        .form-input:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
         }
 
         /* Dark mode focus states */
@@ -109,25 +94,7 @@
             box-shadow: 0 0 0 1px var(--primary-light);
         }
 
-        /* Checkbox specific styles */
-        input[type="checkbox"].form-checkbox {
-            width: 1.25rem;
-            height: 1.25rem;
-            border: 2px solid #4B5563;
-            border-radius: 0.25rem;
-            background-color: transparent;
-        }
-
-        .dark input[type="checkbox"].form-checkbox {
-            border-color: #9CA3AF;
-        }
-
-        input[type="checkbox"].form-checkbox:checked {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        /* Add these specific styles for select elements */
+        /* Select element specific styles */
         select.form-input {
             appearance: none;
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -142,7 +109,7 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
         }
 
-        /* Style for select options */
+        /* Select options */
         select.form-input option {
             background-color: white;
             color: #1F2937;
@@ -154,7 +121,7 @@
             color: white;
         }
 
-        /* Remove color change on option hover in Firefox */
+        /* Option hover states */
         select.form-input option:hover,
         select.form-input option:checked {
             box-shadow: 0 0 10px 100px #4B5563 inset;
@@ -165,7 +132,7 @@
             box-shadow: 0 0 10px 100px #6B7280 inset;
         }
 
-        /* Custom checkbox styles */
+        /* Checkbox styles */
         .checkbox-wrapper {
             position: relative;
             display: flex;
@@ -173,6 +140,58 @@
             gap: 0.75rem;
         }
 
+        .form-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #4B5563;
+            border-radius: 0.25rem;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;
+            margin-top: 0.25rem;
+        }
+
+        .dark .form-checkbox {
+            border-color: #9CA3AF;
+        }
+
+        /* Checkbox checked state */
+        .form-checkbox:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Custom checkmark */
+        .form-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.75rem;
+            height: 0.75rem;
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* Checkbox focus state */
+        .form-checkbox:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+
+        /* Dark mode checkbox focus */
+        .dark .form-checkbox:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 1px var(--primary-light);
+        }
+
+        /* Checkbox label */
         .checkbox-label {
             font-size: 0.875rem;
             color: #4B5563;
@@ -183,7 +202,27 @@
             color: #9CA3AF;
         }
     </style>
-    <script src="js/main.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#757de8',
+                            DEFAULT: '#3f51b5',
+                            dark: '#002984',
+                        },
+                        secondary: {
+                            light: '#62efff',
+                            DEFAULT: '#00bcd4',
+                            dark: '#008ba3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-white transition-all duration-300">
     <!-- Progress bar -->
@@ -223,11 +262,26 @@
         </div>
     </nav>
 
-    <!-- Mobile Navigation Drawer -->
-    <div class="drawer-overlay" id="drawer-overlay"></div>
-    <div class="drawer" id="drawer">
-        <!-- Drawer content from original page -->
+<!-- Add after nav section -->
+<div id="drawer" class="fixed top-0 right-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6">
+        <button id="close-drawer" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mt-8 space-y-6">
+            <a href="#core-concepts" class="block font-medium hover:text-primary">核心理念</a>
+            <a href="#culture-values" class="block font-medium hover:text-primary">文化价值</a>
+            <a href="#leadership" class="block font-medium hover:text-primary">领导力体系</a>
+            <a href="#tools" class="block font-medium hover:text-primary">工具包</a>
+            <button id="mobile-theme-toggle" class="w-full p-2 rounded flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                <span class="ml-2">切换主题</span>
+            </button>
+        </div>
     </div>
+</div>
+<div id="drawer-overlay" class="fixed inset-0 bg-black opacity-0 invisible transition-all duration-300"></div>
 
     <!-- 主体内容 -->
     <main class="container mx-auto py-8 px-6">
@@ -435,59 +489,11 @@
     <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-white opacity-0 invisible transition-all duration-300">
         <i class="fas fa-chevron-up"></i>
     </button>
-
+<!-- Add before closing body tag -->
+<script src="js/main.js"></script>
     <!-- AOS Animation Library -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <!-- JavaScript -->
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50
-        });
 
-
-
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-
-        if (localStorage.getItem('theme') === 'dark' || 
-            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        }
-
-        themeToggle.addEventListener('click', function() {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-        });
-
-        // Scroll progress bar
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-
-            // Back to top button visibility
-            const backToTopButton = document.getElementById('back-to-top');
-            if (winScroll > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        };
-
-        // Back to top button click handler
-        document.getElementById('back-to-top').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    
 </body>
 </html>
