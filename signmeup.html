@@ -11,87 +11,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome 图标库 -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- 自定义样式 -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Common Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="styles/signmeup.css">
     <style>
-        :root {
-            --primary-color: #3f51b5;
-            --primary-light: #757de8;
-            --primary-dark: #002984;
-            --secondary-color: #00bcd4;
-            --secondary-light: #62efff;
-            --secondary-dark: #008ba3;
-            --surface-light: #ffffff;
-            --surface-dark: #121212;
-            --text-primary-light: #212121;
-            --text-secondary-light: #757575;
-            --text-primary-dark: #ffffff;
-            --text-secondary-dark: #b0b0b0;
-        }
-        body {
-            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 0.3s ease;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
-        }
-        .material-card {
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-        .material-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-        }
-        .material-btn {
-            padding: 10px 24px;
-            border-radius: 6px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gradient-bg {
-            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-        .section-heading {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        .section-heading:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-        .dark .dark\:bg-surface-dark {
-            background-color: var(--surface-dark);
-        }
-        .dark .dark\:text-white {
-            color: var(--text-primary-dark);
-        }
-        .dark .dark\:text-secondary {
-            color: var(--text-secondary-dark);
-        }
+        /* Form specific styles */
         .form-input {
             @apply w-full px-4 py-3 rounded-lg 
             border border-gray-300 
@@ -104,12 +35,15 @@
             dark:text-white 
             transition duration-300;
         }
+
         .form-label {
             @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
         }
+
         .form-checkbox {
             @apply h-5 w-5 text-primary border-gray-300 rounded focus:ring-primary dark:border-gray-600 dark:bg-gray-700;
         }
+
         /* Custom form styles */
         .form-input,
         input[type="text"],
@@ -126,188 +60,128 @@
             transition: all 0.3s ease;
         }
 
-/* Dark mode styles */
-.dark .form-input,
-.dark input[type="text"],
-.dark input[type="email"],
-.dark input[type="tel"],
-.dark input[type="number"],
-.dark select,
-.dark textarea {
-    border-color: #9CA3AF;
-    color: #ffffff;
-}
-
-/* Focus states - modified to keep border */
-.form-input:focus,
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-input[type="number"]:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 1px var(--primary-color);
-}
-
-/* Dark mode input styles */
-.dark .form-input,
-.dark input[type="text"],
-.dark input[type="email"],
-.dark input[type="tel"],
-.dark input[type="number"],
-.dark select,
-.dark textarea {
-    border-color: #9CA3AF;
-    color: #ffffff;
-}
-
-/* Dark mode focus states */
-.dark .form-input:focus,
-.dark input[type="text"]:focus,
-.dark input[type="email"]:focus,
-.dark input[type="tel"]:focus,
-.dark input[type="number"]:focus,
-.dark select:focus,
-.dark textarea:focus {
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 1px var(--primary-light);
-}
-
-/* Checkbox specific styles */
-input[type="checkbox"].form-checkbox {
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 2px solid #4B5563;
-    border-radius: 0.25rem;
-    background-color: transparent;
-}
-
-.dark input[type="checkbox"].form-checkbox {
-    border-color: #9CA3AF;
-}
-
-input[type="checkbox"].form-checkbox:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-/* Add these specific styles for select elements */
-select.form-input {
-    appearance: none; /* Remove default select styling */
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.5rem center;
-    background-repeat: no-repeat;
-    background-size: 1.5em 1.5em;
-    padding-right: 2.5rem;
-}
-
-/* Dark mode select arrow */
-.dark select.form-input {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-}
-
-/* Style for select options */
-select.form-input option {
-    background-color: white;
-    color: #1F2937;
-    padding: 0.5rem;
-}
-
-.dark select.form-input option {
-    background-color: #1F2937;
-    color: white;
-}
-
-/* Remove color change on option hover in Firefox */
-select.form-input option:hover,
-select.form-input option:checked {
-    box-shadow: 0 0 10px 100px #4B5563 inset;
-}
-
-.dark select.form-input option:hover,
-.dark select.form-input option:checked {
-    box-shadow: 0 0 10px 100px #6B7280 inset;
-}
-
-/* Custom checkbox styles */
-.checkbox-wrapper {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-}
-
-.form-checkbox {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 2px solid #4B5563;
-    border-radius: 0.25rem;
-    background-color: transparent;
-    cursor: pointer;
-    position: relative;
-    margin-top: 0.25rem;
-}
-
-
-.dark .form-checkbox {
-    border-color: #9CA3AF;
-}
-
-/* Checkbox checked state */
-.form-checkbox:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-/* Custom checkmark */
-.form-checkbox:checked::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 0.75rem;
-    height: 0.75rem;
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-/* Focus state */
-/* Checkbox focus - modified to keep border */
-.form-checkbox:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 1px var(--primary-color);
-}
-
-/* Dark mode checkbox focus */
-.dark .form-checkbox:focus {
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 1px var(--primary-light);
-}
-
-/* Checkbox label */
-.checkbox-label {
-    font-size: 0.875rem;
-    color: #4B5563;
-    cursor: pointer;
-}
-
-.dark .checkbox-label {
-    color: #9CA3AF;
-}
-
-        .svg-container {
-        display: flex;
-        align-items: top; /* Vertically center the span */
+        /* Dark mode styles */
+        .dark .form-input,
+        .dark input[type="text"],
+        .dark input[type="email"],
+        .dark input[type="tel"],
+        .dark input[type="number"],
+        .dark select,
+        .dark textarea {
+            border-color: #9CA3AF;
+            color: #ffffff;
         }
 
+        /* Focus states - modified to keep border */
+        .form-input:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+
+        /* Dark mode input styles */
+        .dark .form-input,
+        .dark input[type="text"],
+        .dark input[type="email"],
+        .dark input[type="tel"],
+        .dark input[type="number"],
+        .dark select,
+        .dark textarea {
+            border-color: #9CA3AF;
+            color: #ffffff;
+        }
+
+        /* Dark mode focus states */
+        .dark .form-input:focus,
+        .dark input[type="text"]:focus,
+        .dark input[type="email"]:focus,
+        .dark input[type="tel"]:focus,
+        .dark input[type="number"]:focus,
+        .dark select:focus,
+        .dark textarea:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 1px var(--primary-light);
+        }
+
+        /* Checkbox specific styles */
+        input[type="checkbox"].form-checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #4B5563;
+            border-radius: 0.25rem;
+            background-color: transparent;
+        }
+
+        .dark input[type="checkbox"].form-checkbox {
+            border-color: #9CA3AF;
+        }
+
+        input[type="checkbox"].form-checkbox:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Add these specific styles for select elements */
+        select.form-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        /* Dark mode select arrow */
+        .dark select.form-input {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        }
+
+        /* Style for select options */
+        select.form-input option {
+            background-color: white;
+            color: #1F2937;
+            padding: 0.5rem;
+        }
+
+        .dark select.form-input option {
+            background-color: #1F2937;
+            color: white;
+        }
+
+        /* Remove color change on option hover in Firefox */
+        select.form-input option:hover,
+        select.form-input option:checked {
+            box-shadow: 0 0 10px 100px #4B5563 inset;
+        }
+
+        .dark select.form-input option:hover,
+        .dark select.form-input option:checked {
+            box-shadow: 0 0 10px 100px #6B7280 inset;
+        }
+
+        /* Custom checkbox styles */
+        .checkbox-wrapper {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-label {
+            font-size: 0.875rem;
+            color: #4B5563;
+            cursor: pointer;
+        }
+
+        .dark .checkbox-label {
+            color: #9CA3AF;
+        }
     </style>
     <script>
         tailwind.config = {

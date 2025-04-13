@@ -17,153 +17,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- 自定义样式 -->
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Page specific styles -->
     <style>
-        :root {
-            --primary-color: #3f51b5;
-            --primary-light: #757de8;
-            --primary-dark: #002984;
-            --secondary-color: #00bcd4;
-            --secondary-light: #62efff;
-            --secondary-dark: #008ba3;
-            --surface-light: #ffffff;
-            --surface-dark: #121212;
-            --text-primary-light: #212121;
-            --text-secondary-light: #757575;
-            --text-primary-dark: #ffffff;
-            --text-secondary-dark: #b0b0b0;
-        }
-        body {
-            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 0.3s ease;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
-        }
-        .material-card {
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-        .material-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-        }
-        .material-btn {
-            padding: 10px 24px;
-            border-radius: See-through;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gradient-bg {
-            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-        .section-heading {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        .section-heading:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-        .dark .dark\:bg-surface-dark {
-            background-color: var(--surface-dark);
-        }
-        .dark .dark\:text-white {
-            color: var(--text-primary-dark);
-        }
-        .dark .dark\:text-secondary {
-            color: var(--text-secondary-dark);
-        }
-        /* Progress bar */
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        .dark .progress-container {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .progress-bar {
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0%;
-        }
-        /* Navigation drawer for mobile */
-        .drawer {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100%;
-            background-color: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: right 0.3s ease;
-        }
-        .dark .drawer {
-            background-color: #1a1a1a;
-        }
-        .drawer.open {
-            right: 0;
-        }
-        .drawer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
-        .drawer-overlay.open {
-            display: block;
-        }
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        .contact-link:hover {
-            color: var(--primary-dark);
-            transform: translateX(5px);
-        }
-        .dark .contact-link {
-            color: var(--primary-light);
-        }
-        .dark .contact-link:hover {
-            color: var(--secondary-light);
-        }
-
+        /* Only unique styles for thankyou.html page */
         .svg-container {
-        display: flex;
-        align-items: top; /* Vertically center the span */
+            display: flex;
+            align-items: top; /* Vertically center the span */
         }
-
     </style>
     <script>
         tailwind.config = {
@@ -223,6 +85,7 @@
             </div>
         </div>
     </nav>
+
     <!-- Mobile Navigation Drawer -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="drawer" id="drawer">
@@ -250,6 +113,7 @@
             </div>
         </div>
     </div>
+
     <!-- 主体内容 -->
     <main class="container mx-auto py-8 px-6">
         <!-- 感谢区域 -->
@@ -286,20 +150,21 @@
                         </a>
                     </div>
                 </div>
-<div class="hidden md:flex w-full md:w-1/3 justify-center">
-                            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                                 alt="成功庆祝"
-         class="w-48 h-48 sm:w-56 sm:h-56 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-64 xl:h-64 object-cover rounded-full shadow-lg">
+                <div class="hidden md:flex w-full md:w-1/3 justify-center">
+                    <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                         alt="成功庆祝"
+                         class="w-48 h-48 sm:w-56 sm:h-56 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-64 xl:h-64 object-cover rounded-full shadow-lg">
                 </div>
             </div>
         </section>
     </main>
+
     <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-12 mt-20">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">  
-                        <object type="image/svg+xml" data="images/favicon.svg" style="width:24px;";></object>             
+                        <object type="image/svg+xml" data="images/favicon.svg" style="width:24px;"></object>             
                         <h3 class="text-xl font-bold">组织文焕</h3>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300 mb-6">
@@ -332,16 +197,15 @@
                             <span class="text-gray-600 dark:text-gray-300">chris.han@mightytech.cn</span>
                         </li>
                     </ul>
-<div>
-                <div class="svg-container">
-                    <!--wechat svg: images/wechat.svg-->
-                    <object type="image/svg+xml" data="images/wechat.svg" style="width:80px; margin-right:20px";></object>
-
-                    <div class="w-48">
-                        <div class="text-gray-600 dark:text-green-400">微信公众号</div>
-                        <div class="text-gray-600 dark:text-gray-300">系统之美</div>
-                    </div>
-                </div>
+                    <div>
+                        <div class="svg-container">
+                            <!--wechat svg: images/wechat.svg-->
+                            <object type="image/svg+xml" data="images/wechat.svg" style="width:80px; margin-right:20px"></object>
+                            <div class="w-48">
+                                <div class="text-gray-600 dark:text-green-400">微信公众号</div>
+                                <div class="text-gray-600 dark:text-gray-300">系统之美</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -357,10 +221,12 @@
             </div>
         </div>
     </footer>
+
     <!-- 返回顶部按钮 -->
     <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-white opacity-0 invisible transition-all duration-300">
         <i class="fas fa-chevron-up"></i>
     </button>
+
     <!-- AOS Animation Library -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <!-- JavaScript -->
@@ -373,10 +239,12 @@
                 offset: 50
             });
         });
+
         // 主题切换功能
         const themeToggle = document.getElementById('theme-toggle');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
         const html = document.documentElement;
+
         // 检查本地存储或系统偏好
         if (localStorage.getItem('theme') === 'dark' || 
             (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -384,38 +252,46 @@
         } else {
             html.classList.remove('dark');
         }
+
         // 切换主题函数
         function toggleTheme() {
             html.classList.toggle('dark');
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         }
+
         // 桌面主题切换
         themeToggle.addEventListener('click', toggleTheme);
         // 移动端主题切换
         mobileThemeToggle.addEventListener('click', toggleTheme);
+
         // 移动导航抽屉
         const menuToggle = document.getElementById('menu-toggle');
         const drawer = document.getElementById('drawer');
         const drawerOverlay = document.getElementById('drawer-overlay');
         const closeDrawer = document.getElementById('close-drawer');
+
         menuToggle.addEventListener('click', function() {
             drawer.classList.add('open');
             drawerOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
         });
+
         function closeDrawerFunc() {
             drawer.classList.remove('open');
             drawerOverlay.classList.remove('open');
             document.body.style.overflow = '';
         }
+
         closeDrawer.addEventListener('click', closeDrawerFunc);
         drawerOverlay.addEventListener('click', closeDrawerFunc);
+
         // 移动导航中的链接点击后关闭抽屉
         drawer.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 closeDrawerFunc();
             });
         });
+
         // 滚动进度条
         window.onscroll = function() {
             // 滚动进度
@@ -423,6 +299,7 @@
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
+
             // 返回顶部按钮
             const backToTopButton = document.getElementById('back-to-top');
             if (winScroll > 300) {
@@ -433,6 +310,7 @@
                 backToTopButton.classList.add('opacity-0', 'invisible');
             }
         };
+
         // 返回顶部按钮点击事件
         document.getElementById('back-to-top').addEventListener('click', function() {
             window.scrollTo({
@@ -440,6 +318,7 @@
                 behavior: 'smooth'
             });
         });
+
         // 平滑滚动到锚点
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

@@ -17,80 +17,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- 自定义样式 -->
+    <!-- Common styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Page specific styles -->
     <style>
-        :root {
-            --primary-color: #3f51b5;
-            --primary-light: #757de8;
-            --primary-dark: #002984;
-            --secondary-color: #00bcd4;
-            --secondary-light: #62efff;
-            --secondary-dark: #008ba3;
-            --surface-light: #ffffff;
-            --surface-dark: #121212;
-            --text-primary-light: #212121;
-            --text-secondary-light: #757575;
-            --text-primary-dark: #ffffff;
-            --text-secondary-dark: #b0b0b0;
-        }
-        body {
-            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 0.3s ease;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
-        }
-        .material-card {
-            border-radius: 12px;
+        /* Advocate card styles */
+        .advocate-card {
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-        .material-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-        }
-        .material-btn {
-            padding: 10px 24px;
-            border-radius: See-through;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
         }
-        .gradient-bg {
-            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
-            color: white;
+        .advocate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-        .section-heading {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+        .advocate-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        .section-heading:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-        .dark .dark\:bg-surface-dark {
-            background-color: var(--surface-dark);
-        }
-        .dark .dark\:text-white {
-            color: var(--text-primary-dark);
-        }
-        .dark .dark\:text-secondary {
-            color: var(--text-secondary-dark);
+        .dark .advocate-img {
+            border-color: #2d2d2d;
         }
         .social-icon {
             width: 40px;
@@ -116,99 +66,6 @@
             background-color: var(--primary-light);
             color: var(--surface-dark);
         }
-        /* Progress bar */
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        .dark .progress-container {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .progress-bar {
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0%;
-        }
-        /* Navigation drawer for mobile */
-        .drawer {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100%;
-            background-color: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: right 0.3s ease;
-        }
-        .dark .drawer {
-            background-color: #1a1a1a;
-        }
-        .drawer.open {
-            right: 0;
-        }
-        .drawer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
-        .drawer-overlay.open {
-            display: block;
-        }
-        /* Advocate card styles */
-        .advocate-card {
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .advocate-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        .advocate-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 60px;
-            object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .dark .advocate-img {
-            border-color: #2d2d2d;
-        }
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        .contact-link:hover {
-            color: var(--primary-dark);
-            transform: translateX(5px);
-        }
-        .dark .contact-link {
-            color: var(--primary-light);
-        }
-        .dark .contact-link:hover {
-            color: var(--secondary-light);
-        }
-
-        .svg-container {
-        display: flex;
-        align-items: top; /* Vertically center the span */
-        }
-
     </style>
     <script>
         tailwind.config = {
@@ -295,6 +152,9 @@
             </div>
         </div>
     </div>
+
+</body>
+</html>
     <!-- 主体内容 -->
     <main class="container mx-auto py-8 px-6">
         <!-- 英雄区域 -->
