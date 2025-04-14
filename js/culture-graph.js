@@ -9,32 +9,30 @@ const graphData = {
         { id: "integrity", group: "values", label: "诚实守信", description: "技术进步减少了信息差，最大的风险往往来自能力不足或回避现实，或二者兼有" },
         
         // Positive Behavior Nodes
-        { id: "knowledge_sharing", group: "behaviors", label: "建立个人知识系统", type: "positive" },
-        { id: "capability_monitoring", group: "behaviors", label: "设置能力基线报警", type: "positive" },
-        { id: "talent_flow", group: "behaviors", label: "建立人才流动机制", type: "positive" },
-        { id: "distributed_cognition", group: "behaviors", label: "平衡分布式认知与组织共识", type: "positive" },
-        { id: "innovation_network", group: "behaviors", label: "促进人才多样性创新", type: "positive" },
-        { id: "team_goal_alignment", group: "behaviors", label: "个体任务服从团队目标", type: "positive" },
-        { id: "task_feedback", group: "behaviors", label: "建立任务结果反馈", type: "positive" },
-        { id: "info_system", group: "behaviors", label: "利用信息系统监测", type: "positive" },
-        { id: "feedback_channel", group: "behaviors", label: "适配反馈通道", type: "positive" },
-        { id: "value_selection", group: "behaviors", label: "价值观自主选择", type: "positive" },
-        { id: "rapid_iteration", group: "behaviors", label: "短期快速试错", type: "positive" },
-        { id: "system_balance", group: "behaviors", label: "平衡自治与规则", type: "positive" },
-        { id: "negotiation", group: "behaviors", label: "基于价值差异化谈判", type: "positive" },
-        { id: "risk_monitoring", group: "behaviors", label: "诚实面对风险", type: "positive" },
-        { id: "trust_verification", group: "behaviors", label: "信任但要验证", type: "positive" },
+        { id: "knowledge_sharing", group: "behaviors", label: "建立个人知识系统", description: "通过系统化的知识管理和分享，促进组织学习和创新", type: "positive" },
+        { id: "capability_monitoring", group: "behaviors", label: "设置能力基线报警", description: "建立关键能力指标监控机制，及时发现能力短板", type: "positive" },
+        { id: "talent_flow", group: "behaviors", label: "建立人才流动机制", description: "促进组织内人才合理流动，优化资源配置和能力结构", type: "positive" },
+        { id: "innovation_network", group: "behaviors", label: "促进人才多样性创新", description: "构建多元化的人才网络，激发创新思维和协作", type: "positive" },
+        { id: "team_goal_alignment", group: "behaviors", label: "个体任务服从团队目标", description: "确保个人目标与团队整体目标保持一致性", type: "positive" },
+        { id: "task_feedback", group: "behaviors", label: "建立任务结果反馈", description: "构建完整的任务执行反馈循环，促进持续改进", type: "positive" },
+        { id: "info_system", group: "behaviors", label: "利用信息系统监测", description: "通过信息化手段实现任务进度和质量的实时监控", type: "positive" },
+        { id: "feedback_channel", group: "behaviors", label: "适配反馈通道", description: "建立多元化的反馈渠道，确保信息传递的有效性", type: "positive" },
+        { id: "value_selection", group: "behaviors", label: "价值观自主选择", description: "允许个体在组织框架下进行价值观的自主选择和实践", type: "positive" },
+        { id: "rapid_iteration", group: "behaviors", label: "短期快速试错", description: "采用快速迭代方式验证想法，降低试错成本", type: "positive" },
+        { id: "system_balance", group: "behaviors", label: "平衡自治与规则", description: "在个体自主性和组织规则之间寻找最优平衡点", type: "positive" },
+        { id: "negotiation", group: "behaviors", label: "基于价值差异化谈判", description: "认识并尊重价值观差异，寻求共识与合作", type: "positive" },
+        { id: "risk_monitoring", group: "behaviors", label: "诚实面对风险", description: "主动识别和应对风险，保持透明和诚实的态度", type: "positive" },
+        { id: "trust_verification", group: "behaviors", label: "信任但要验证", description: "在维持基本信任的同时保持必要的验证机制", type: "positive" },
 
         // Negative Behavior Nodes
-        { id: "closed_system", group: "behaviors", label: "封闭系统思维", type: "negative" },
-        { id: "local_optimization", group: "behaviors", label: "局部利益优化", type: "negative" },
-        { id: "perfect_planning", group: "behaviors", label: "追求完美规划", type: "negative" },
-        { id: "information_asymmetry", group: "behaviors", label: "利用信息差", type: "negative" },
-        { id: "blind_trust", group: "behaviors", label: "盲目信任", type: "negative" },
+        { id: "closed_system", group: "behaviors", label: "封闭系统思维", description: "排斥外部交流和变革，导致系统效能逐渐衰减", type: "negative" },
+        { id: "local_optimization", group: "behaviors", label: "局部利益优化", description: "过分关注局部效益，忽视整体目标的实现", type: "negative" },
+        { id: "perfect_planning", group: "behaviors", label: "追求完美规划", description: "过度追求计划的完美性，影响执行效率和适应性", type: "negative" },
+        { id: "information_asymmetry", group: "behaviors", label: "利用信息差", description: "通过控制信息流动获取不当利益，损害团队信任", type: "negative" },
+        { id: "blind_trust", group: "behaviors", label: "盲目信任", description: "缺乏必要的验证机制，增加团队运营风险", type: "negative" },
 
-        // Philosophy/Mindset Nodes (New addition)
-        // Positive Philosophy Nodes
-        { id: "growth_mindset", group: "philosophy", label: "成长型思维", description: "强调持续学习和发展的心态，优于固定型思维模式", type: "positive" },
+        // Philosophy/Mindset Nodes
+        { id: "growth_mindset", group: "philosophy", label: "成长型思维", description: "强调持续学习和发展的心态，优于固定型思维模式" , type: "positive" },
         { id: "holistic_optimization", group: "philosophy", label: "整体优化思维", description: "注重系统性思考，追求整体最优而非局部最优", type: "positive" },
         { id: "result_oriented", group: "philosophy", label: "结果导向思维", description: "关注实际成果而非仅关注过程执行", type: "positive" },
         { id: "experimental_mindset", group: "philosophy", label: "实验迭代思维", description: "倾向于快速试错和迭代，而非追求完美决策", type: "positive" },
@@ -47,7 +45,7 @@ const graphData = {
         { id: "perfect_mindset", group: "philosophy", label: "完美主义思维", description: "过分追求完美规划，导致行动迟缓", type: "negative" },
         { id: "static_promise", group: "philosophy", label: "静态承诺思维", description: "依赖一次性承诺，缺乏持续验证", type: "negative" },
         
-        // 新增节点
+        // Additional nodes
         { 
             id: "team_capability_chain", 
             group: "behaviors", 
@@ -83,8 +81,6 @@ const graphData = {
             description: "将团队视为有机整体，重视能力体系的系统性建设",
             type: "positive" 
         },
-
-        // 添加相关的消极行为节点
         { 
             id: "neglect_weakness", 
             group: "behaviors", 
@@ -149,7 +145,7 @@ const graphData = {
         { source: "knowledge_sharing", target: "openness", value: 1, type: "positive", relationship: "direct" },
         { source: "capability_monitoring", target: "openness", value: 1, type: "positive", relationship: "direct" },
         { source: "talent_flow", target: "openness", value: 1, type: "positive", relationship: "direct" },
-        { source: "distributed_cognition", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
+        { source: "process_optimization", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "innovation_network", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "team_goal_alignment", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "task_feedback", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
@@ -171,7 +167,7 @@ const graphData = {
 
         // 4. Cross-Value Behavior Links
         { source: "knowledge_sharing", target: "teamwork", value: 1, type: "positive", relationship: "cross" },
-        { source: "distributed_cognition", target: "openness", value: 1, type: "positive", relationship: "cross" },
+        { source: "process_optimization", target: "openness", value: 1, type: "positive", relationship: "cross" },
         { source: "task_feedback", target: "integrity", value: 1, type: "positive", relationship: "cross" },
         { source: "talent_flow", target: "self_improvement", value: 1, type: "positive", relationship: "cross" },
         { source: "info_system", target: "openness", value: 1, type: "positive", relationship: "cross" },
@@ -270,12 +266,11 @@ const graphData = {
 // 1. Process and Optimization Related
 { source: "process_optimization", target: "local_optimization", value: -1, type: "negative", relationship: "direct" }, // 流程整体优化抑制局部优化
 { source: "process_optimization", target: "team_capability_chain", value: 1, type: "positive", relationship: "direct" }, // 流程优化强化能力链条
-{ source: "process_optimization", target: "distributed_cognition", value: 1, type: "positive", relationship: "cross" }, // 流程优化促进分布式认知
+
 
 // 2. WBS Decomposition Related
 { source: "wbs_decomposition", target: "capability_baseline", value: 1, type: "positive", relationship: "direct" }, // WBS分解有助于确定能力基线
 { source: "wbs_decomposition", target: "team_goal_alignment", value: -1, type: "negative", relationship: "cross" }, // WBS分解可能影响目标对齐
-{ source: "wbs_decomposition", target: "distributed_cognition", value: 1, type: "positive", relationship: "direct" }, // WBS分解促进认知分布
 
 // 3. Individual to Team Performance
 { source: "individual_task_completion", target: "task_feedback", value: 1, type: "positive", relationship: "direct" }, // 个体任务完成需要反馈
