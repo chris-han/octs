@@ -58,15 +58,17 @@
     <nav class="bg-white dark:bg-gray-800 shadow-lg py-4 sticky top-0 z-50 transition-all">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center">
+                
                 <div class="flex items-center space-x-3">
-                   
-                    <a href="index.html" class="flex items-end">
-                        <object type="image/svg+xml" data="images/favicon.svg" style="width:24px; margin-right:5px"></object>
-                        <span class="text-xl font-bold bg-gradient-to-r from-primary-light to-secondary bg-clip-text text-transparent" style="margin-right:5px">组织文焕</span> 
-                        <span class="text-sm font-medium">Organizational Culture Transformation System</span>
-                    
+                    <a href="index.html" class="flex items-end flex-wrap">
+                        <div class="flex items-center flex-nowrap">
+                            <object type="image/svg+xml" data="images/favicon.svg" class="w-6 mr-1"></object>
+                            <span class="text-xl font-bold bg-gradient-to-r from-primary-light to-secondary bg-clip-text text-transparent mr-1">组织文焕</span>
+                        </div>
+                        <span class="text-sm font-medium w-full sm:w-auto">Organizational Culture Transformation System</span>
                     </a>
                 </div>
+
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="index.html#core-concepts" class="font-medium hover:text-primary transition-colors">核心理念</a>
                     <a href="index.html#culture-values" class="font-medium hover:text-primary transition-colors">文化价值</a>
@@ -85,7 +87,6 @@
             </div>
         </div>
     </nav>
-
     <!-- Mobile Navigation Drawer -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="drawer" id="drawer">
