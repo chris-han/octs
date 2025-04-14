@@ -98,6 +98,41 @@ const graphData = {
             label: "静态考核模式", 
             description: "采用固定的考核方式，缺乏动态调整机制",
             type: "negative" 
+        },
+        { 
+            id: "wbs_decomposition", 
+            group: "behaviors", 
+            label: "模块化/专业化拆解WBS", 
+            description: "将团队任务拆解为可分配的个体工作包",
+            type: "positive" 
+        },
+        { 
+            id: "individual_task_completion", 
+            group: "behaviors", 
+            label: "个体任务达成", 
+            description: "个体完成分配的具体工作包",
+            type: "positive" 
+        },
+        { 
+            id: "team_task_completion", 
+            group: "behaviors", 
+            label: "团队任务达成", 
+            description: "团队整体目标的完成状态",
+            type: "positive" 
+        },
+        { 
+            id: "process_optimization", 
+            group: "behaviors", 
+            label: "流程整体目标优化", 
+            description: "从整体视角优化流程以达成团队目标",
+            type: "positive" 
+        },
+        { 
+            id: "global_optimization", 
+            group: "behaviors", 
+            label: "全局优化", 
+            description: "追求团队整体效能的最优化",
+            type: "positive" 
         }
     ],
     links: [
@@ -206,7 +241,70 @@ const graphData = {
         // 与现有节点的关联
         { source: "team_goal_alignment", target: "team_capability_chain", value: 1, type: "positive", relationship: "direct" },
         { source: "capability_monitoring", target: "capability_baseline", value: 1, type: "positive", relationship: "direct" },
-        { source: "talent_flow", target: "periodic_assessment", value: 1, type: "positive", relationship: "direct" }
+        { source: "talent_flow", target: "periodic_assessment", value: 1, type: "positive", relationship: "direct" },
+        
+        // WBS分解相关
+{ source: "wbs_decomposition", target: "individual_task_completion", value: 1, type: "positive", relationship: "direct" },
+{ source: "wbs_decomposition", target: "team_task_completion", value: -1, type: "negative", relationship: "direct" },
+
+// 个体任务达成相关
+{ source: "individual_task_completion", target: "team_task_completion", value: 1, type: "positive", relationship: "direct" },
+{ source: "individual_task_completion", target: "local_optimization", value: 1, type: "positive", relationship: "direct" },
+{ source: "individual_task_completion", target: "global_optimization", value: -1, type: "negative", relationship: "direct" },
+
+// 优化关系
+{ source: "local_optimization", target: "global_optimization", value: -1, type: "negative", relationship: "direct" },
+{ source: "process_optimization", target: "global_optimization", value: 1, type: "positive", relationship: "direct" },
+{ source: "process_optimization", target: "team_task_completion", value: 1, type: "positive", relationship: "direct" },
+
+// 与现有节点的关联
+{ source: "team_goal_alignment", target: "process_optimization", value: 1, type: "positive", relationship: "direct" },
+{ source: "holistic_optimization", target: "process_optimization", value: 1, type: "positive", relationship: "philosophy" },
+{ source: "team_capability_chain", target: "process_optimization", value: 1, type: "positive", relationship: "direct" },
+
+// 作为核心价值观的影响
+{ source: "wbs_decomposition", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
+{ source: "process_optimization", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
+
+
+// 1. Process and Optimization Related
+{ source: "process_optimization", target: "local_optimization", value: -1, type: "negative", relationship: "direct" }, // 流程整体优化抑制局部优化
+{ source: "process_optimization", target: "team_capability_chain", value: 1, type: "positive", relationship: "direct" }, // 流程优化强化能力链条
+{ source: "process_optimization", target: "distributed_cognition", value: 1, type: "positive", relationship: "cross" }, // 流程优化促进分布式认知
+
+// 2. WBS Decomposition Related
+{ source: "wbs_decomposition", target: "capability_baseline", value: 1, type: "positive", relationship: "direct" }, // WBS分解有助于确定能力基线
+{ source: "wbs_decomposition", target: "team_goal_alignment", value: -1, type: "negative", relationship: "cross" }, // WBS分解可能影响目标对齐
+{ source: "wbs_decomposition", target: "distributed_cognition", value: 1, type: "positive", relationship: "direct" }, // WBS分解促进认知分布
+
+// 3. Individual to Team Performance
+{ source: "individual_task_completion", target: "task_feedback", value: 1, type: "positive", relationship: "direct" }, // 个体任务完成需要反馈
+{ source: "individual_task_completion", target: "info_system", value: 1, type: "positive", relationship: "direct" }, // 个体任务完成需要信息系统支持
+{ source: "team_task_completion", target: "team_goal_alignment", value: 1, type: "positive", relationship: "direct" }, // 团队任务完成促进目标对齐
+
+// 4. Philosophy and Mindset Links
+{ source: "holistic_optimization", target: "team_task_completion", value: 1, type: "positive", relationship: "philosophy" }, // 整体优化思维促进团队任务完成
+{ source: "result_oriented", target: "individual_task_completion", value: 1, type: "positive", relationship: "philosophy" }, // 结果导向促进个体任务完成
+{ source: "fixed_mindset", target: "wbs_decomposition", value: 1, type: "positive", relationship: "philosophy" }, // 静态思维倾向于机械分解
+{ source: "process_oriented", target: "wbs_decomposition", value: 1, type: "positive", relationship: "philosophy" }, // 过程导向促进WBS分解
+
+// 5. Negative Impact Links
+{ source: "perfect_planning", target: "wbs_decomposition", value: 1, type: "positive", relationship: "cross" }, // 完美主义促进过度分解
+{ source: "static_assessment", target: "individual_task_completion", value: -1, type: "negative", relationship: "direct" }, // 静态考核影响个体任务达成
+{ source: "local_mindset", target: "individual_task_completion", value: 1, type: "positive", relationship: "philosophy" }, // 局部思维促进个体任务关注
+
+// 6. Cross-Value Impact
+{ source: "global_optimization", target: "teamwork", value: 1, type: "positive", relationship: "cross" }, // 全局优化促进团队协作
+{ source: "global_optimization", target: "task_completion", value: 1, type: "positive", relationship: "cross" }, // 全局优化促进整体任务完成
+{ source: "wbs_decomposition", target: "self_improvement", value: -1, type: "negative", relationship: "cross" }, // WBS分解可能限制自主改进
+
+{ 
+    source: "team_task_completion", 
+    target: "task_completion", 
+    value: 1, 
+    type: "positive", 
+    relationship: "direct" 
+}
     ]
 };
 
