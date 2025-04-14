@@ -5,8 +5,8 @@
     --secondary-color: #00bcd4;
     --secondary-light: #62efff;
     --secondary-dark: #008ba3;
-    --surface-light: #ffffff;
-    --surface-dark: #121212;
+    --surface-light: #f8f9fa;
+    --surface-dark: #19212d;
     --text-primary-light: #212121;
     --text-secondary-light: #757575;
     --text-primary-dark: #ffffff;
@@ -191,4 +191,3 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     visibility: visible;
 }
-
