@@ -33,43 +33,62 @@ const graphData = {
         { id: "blind_trust", group: "behaviors", label: "盲目信任", type: "negative" }
     ],
     links: [
-        // Positive impacts on Openness
-        { source: "knowledge_sharing", target: "openness", value: 1, type: "positive" },
-        { source: "capability_monitoring", target: "openness", value: 1, type: "positive" },
-        { source: "talent_flow", target: "openness", value: 1, type: "positive" },
-        
-        // Negative impacts on Openness
-        { source: "closed_system", target: "openness", value: -1, type: "negative" },
-        
-        // Positive impacts on Teamwork
-        { source: "distributed_cognition", target: "teamwork", value: 1, type: "positive" },
-        { source: "innovation_network", target: "teamwork", value: 1, type: "positive" },
-        { source: "team_goal_alignment", target: "teamwork", value: 1, type: "positive" },
-        
-        // Negative impacts on Teamwork
-        { source: "local_optimization", target: "teamwork", value: -1, type: "negative" },
-        
-        // Positive impacts on Task Completion
-        { source: "task_feedback", target: "task_completion", value: 1, type: "positive" },
-        { source: "info_system", target: "task_completion", value: 1, type: "positive" },
-        { source: "feedback_channel", target: "task_completion", value: 1, type: "positive" },
-        
-        // Positive impacts on Self Improvement
-        { source: "value_selection", target: "self_improvement", value: 1, type: "positive" },
-        { source: "rapid_iteration", target: "self_improvement", value: 1, type: "positive" },
-        { source: "system_balance", target: "self_improvement", value: 1, type: "positive" },
-        
-        // Negative impacts on Self Improvement
-        { source: "perfect_planning", target: "self_improvement", value: -1, type: "negative" },
-        
-        // Positive impacts on Integrity
-        { source: "negotiation", target: "integrity", value: 1, type: "positive" },
-        { source: "risk_monitoring", target: "integrity", value: 1, type: "positive" },
-        { source: "trust_verification", target: "integrity", value: 1, type: "positive" },
-        
-        // Negative impacts on Integrity
-        { source: "information_asymmetry", target: "integrity", value: -1, type: "negative" },
-        { source: "blind_trust", target: "integrity", value: -1, type: "negative" }
+        // 1. 价值观之间的相互强化关系
+        { source: "openness", target: "teamwork", value: 1, type: "positive", relationship: "value" },
+        { source: "teamwork", target: "task_completion", value: 1, type: "positive", relationship: "value" },
+        { source: "task_completion", target: "self_improvement", value: 1, type: "positive", relationship: "value" },
+        { source: "self_improvement", target: "integrity", value: 1, type: "positive", relationship: "value" },
+        { source: "integrity", target: "openness", value: 1, type: "positive", relationship: "value" },
+        { source: "openness", target: "self_improvement", value: 1, type: "positive", relationship: "value" },
+        { source: "teamwork", target: "integrity", value: 1, type: "positive", relationship: "value" },
+
+        // 2. 开放交流的直接行为影响
+        { source: "knowledge_sharing", target: "openness", value: 1, type: "positive", relationship: "direct" },
+        { source: "capability_monitoring", target: "openness", value: 1, type: "positive", relationship: "direct" },
+        { source: "talent_flow", target: "openness", value: 1, type: "positive", relationship: "direct" },
+        { source: "closed_system", target: "openness", value: -1, type: "negative", relationship: "direct" },
+
+        // 3. 团队协作的直接行为影响
+        { source: "distributed_cognition", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
+        { source: "innovation_network", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
+        { source: "team_goal_alignment", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
+        { source: "local_optimization", target: "teamwork", value: -1, type: "negative", relationship: "direct" },
+
+        // 4. 任务达成的直接行为影响
+        { source: "task_feedback", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
+        { source: "info_system", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
+        { source: "feedback_channel", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
+
+        // 5. 自主精进的直接行为影响
+        { source: "value_selection", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
+        { source: "rapid_iteration", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
+        { source: "system_balance", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
+        { source: "perfect_planning", target: "self_improvement", value: -1, type: "negative", relationship: "direct" },
+
+        // 6. 诚实守信的直接行为影响
+        { source: "negotiation", target: "integrity", value: 1, type: "positive", relationship: "direct" },
+        { source: "risk_monitoring", target: "integrity", value: 1, type: "positive", relationship: "direct" },
+        { source: "trust_verification", target: "integrity", value: 1, type: "positive", relationship: "direct" },
+        { source: "information_asymmetry", target: "integrity", value: -1, type: "negative", relationship: "direct" },
+        { source: "blind_trust", target: "integrity", value: -1, type: "negative", relationship: "direct" },
+
+        // 7. 跨价值观的行为影响
+        { source: "knowledge_sharing", target: "teamwork", value: 1, type: "positive", relationship: "cross" },
+        { source: "distributed_cognition", target: "openness", value: 1, type: "positive", relationship: "cross" },
+        { source: "task_feedback", target: "integrity", value: 1, type: "positive", relationship: "cross" },
+        { source: "talent_flow", target: "self_improvement", value: 1, type: "positive", relationship: "cross" },
+        { source: "info_system", target: "openness", value: 1, type: "positive", relationship: "cross" },
+        { source: "local_optimization", target: "integrity", value: -1, type: "negative", relationship: "cross" },
+        { source: "closed_system", target: "teamwork", value: -1, type: "negative", relationship: "cross" },
+        { source: "blind_trust", target: "task_completion", value: -1, type: "negative", relationship: "cross" },
+
+        // 8. 额外的跨价值观行为影响
+        { source: "innovation_network", target: "self_improvement", value: 1, type: "positive", relationship: "cross" },
+        { source: "system_balance", target: "teamwork", value: 1, type: "positive", relationship: "cross" },
+        { source: "risk_monitoring", target: "openness", value: 1, type: "positive", relationship: "cross" },
+        { source: "rapid_iteration", target: "task_completion", value: 1, type: "positive", relationship: "cross" },
+        { source: "perfect_planning", target: "teamwork", value: -1, type: "negative", relationship: "cross" },
+        { source: "information_asymmetry", target: "openness", value: -1, type: "negative", relationship: "cross" }
     ]
 };
 
@@ -105,6 +124,33 @@ const config = {
             dimmed: "#424242",
             background: "#121212",
             text: "#ffffff"
+        }
+    },
+    
+    linkDistance: 100, // 增加连接距离，让节点间距更大
+    charge: -400, // 增加排斥力，避免节点重叠
+    
+    // 添加新的力导向配置
+    forceConfig: {
+        // 价值观节点之间的特殊引力
+        valueForce: -800,
+        // 行为节点与价值观节点之间的引力
+        behaviorForce: -200
+    },
+    
+    // 调整节点大小
+    nodeRadius: 6, // 稍微减小普通节点
+    valueNodeRadius: 15, // 增大价值观节点
+    
+    // 添加标签配置
+    labels: {
+        fontSize: {
+            values: "14px",
+            behaviors: "12px"
+        },
+        distance: {
+            values: 20,
+            behaviors: 15
         }
     }
 };
@@ -177,15 +223,30 @@ function initGraph() {
 
     // Create the simulation with adjusted forces
     const simulation = d3.forceSimulation(graphData.nodes)
-        .force("link", d3.forceLink(graphData.links)
-            .id(d => d.id)
-            .distance(config.linkDistance))
-        .force("charge", d3.forceManyBody()
-            .strength(config.charge))
-        .force("center", d3.forceCenter(config.width / 2, config.height / 2))
-        .force("collision", d3.forceCollide().radius(30))
-        .force("x", d3.forceX(config.width / 2).strength(0.1))
-        .force("y", d3.forceY(config.height / 2).strength(0.1));
+    .force("link", d3.forceLink(graphData.links)
+        .id(d => d.id)
+        .distance(d => {
+            // 价值观节点之间的连接使用更大的距离
+            if (d.source.group === "values" && d.target.group === "values") {
+                return config.linkDistance * 1.5;
+            }
+            return config.linkDistance;
+        }))
+    .force("charge", d3.forceManyBody()
+        .strength(d => {
+            // 价值观节点有更强的排斥力
+            if (d.group === "values") {
+                return config.forceConfig.valueForce;
+            }
+            return config.charge;
+        }))
+    .force("center", d3.forceCenter(config.width / 2, config.height / 2))
+    .force("collision", d3.forceCollide().radius(d => {
+        // 价值观节点有更大的碰撞半径
+        return (d.group === "values" ? config.valueNodeRadius : config.nodeRadius) * 2;
+    }))
+    .force("x", d3.forceX(config.width / 2).strength(0.1))
+    .force("y", d3.forceY(config.height / 2).strength(0.1));
 
     // Create links
     const link = g.append("g")
@@ -193,7 +254,22 @@ function initGraph() {
         .data(graphData.links)
         .join("line")
         .attr("stroke", d => d.type === "positive" ? getThemeColor("linkPositive") : getThemeColor("linkNegative"))
-        .attr("stroke-width", 2)
+        .attr("stroke-width", d => {
+            switch(d.relationship) {
+                case "value": return 3; // 价值观之间的连接更粗
+                case "direct": return 2; // 直接影响普通粗细
+                case "cross": return 1; // 跨价值观影响较细
+                default: return 2;
+            }
+        })
+        .attr("stroke-dasharray", d => {
+            // 跨价值观的影响使用虚线
+            return d.relationship === "cross" ? "3,3" : "none";
+        })
+        .attr("opacity", d => {
+            // 价值观之间的连接更突出
+            return d.relationship === "value" ? 0.8 : 0.6;
+        })
         .attr("marker-end", d => `url(#arrow-${d.type})`);
 
     // Create nodes
