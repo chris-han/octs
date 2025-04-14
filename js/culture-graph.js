@@ -1,14 +1,14 @@
 // Data structure for the knowledge graph
 const graphData = {
     nodes: [
-        // Value System Nodes
+        // Value System Nodes (Core values, remain unchanged)
         { id: "openness", group: "values", label: "开放交流", description: "封闭系统熵增寂灭是必然；个体或组织如果成为封闭系统，熵增腐败也是必然的" },
         { id: "teamwork", group: "values", label: "团队协作", description: "世界不是孤立事件的集合，创新涌现的前提是组织构造的多样性和复杂性" },
         { id: "task_completion", group: "values", label: "任务达成", description: "组织和个体都是有目的主体，个体是实现组织目标的功能单元" },
         { id: "self_improvement", group: "values", label: "自主精进", description: "世界是变化的，而且是非线性变化，混沌和秩序对立统一、相互转化" },
         { id: "integrity", group: "values", label: "诚实守信", description: "技术进步减少了信息差，最大的风险往往来自能力不足或回避现实，或二者兼有" },
         
-        // Behavior Nodes
+        // Positive Behavior Nodes
         { id: "knowledge_sharing", group: "behaviors", label: "建立个人知识系统", type: "positive" },
         { id: "capability_monitoring", group: "behaviors", label: "设置能力基线报警", type: "positive" },
         { id: "talent_flow", group: "behaviors", label: "建立人才流动机制", type: "positive" },
@@ -24,16 +24,31 @@ const graphData = {
         { id: "negotiation", group: "behaviors", label: "基于价值差异化谈判", type: "positive" },
         { id: "risk_monitoring", group: "behaviors", label: "诚实面对风险", type: "positive" },
         { id: "trust_verification", group: "behaviors", label: "信任但要验证", type: "positive" },
-        
+
         // Negative Behavior Nodes
         { id: "closed_system", group: "behaviors", label: "封闭系统思维", type: "negative" },
         { id: "local_optimization", group: "behaviors", label: "局部利益优化", type: "negative" },
         { id: "perfect_planning", group: "behaviors", label: "追求完美规划", type: "negative" },
         { id: "information_asymmetry", group: "behaviors", label: "利用信息差", type: "negative" },
-        { id: "blind_trust", group: "behaviors", label: "盲目信任", type: "negative" }
+        { id: "blind_trust", group: "behaviors", label: "盲目信任", type: "negative" },
+
+        // Philosophy/Mindset Nodes (New addition)
+        // Positive Philosophy Nodes
+        { id: "growth_mindset", group: "philosophy", label: "成长型思维", description: "强调持续学习和发展的心态，优于固定型思维模式", type: "positive" },
+        { id: "holistic_optimization", group: "philosophy", label: "整体优化思维", description: "注重系统性思考，追求整体最优而非局部最优", type: "positive" },
+        { id: "result_oriented", group: "philosophy", label: "结果导向思维", description: "关注实际成果而非仅关注过程执行", type: "positive" },
+        { id: "experimental_mindset", group: "philosophy", label: "实验迭代思维", description: "倾向于快速试错和迭代，而非追求完美决策", type: "positive" },
+        { id: "continuous_verification", group: "philosophy", label: "持续验证思维", description: "重视持续验证而非静态承诺，不断确认和调整", type: "positive" },
+
+        // Negative Philosophy Nodes
+        { id: "fixed_mindset", group: "philosophy", label: "静态思维", description: "固守现有认知，缺乏成长意愿", type: "negative" },
+        { id: "local_mindset", group: "philosophy", label: "局部思维", description: "只关注局部利益，忽视整体效果", type: "negative" },
+        { id: "process_oriented", group: "philosophy", label: "过程导向思维", description: "过分关注执行过程，忽视实际成果", type: "negative" },
+        { id: "perfect_mindset", group: "philosophy", label: "完美主义思维", description: "过分追求完美规划，导致行动迟缓", type: "negative" },
+        { id: "static_promise", group: "philosophy", label: "静态承诺思维", description: "依赖一次性承诺，缺乏持续验证", type: "negative" }
     ],
     links: [
-        // 1. 价值观之间的相互强化关系
+        // 1. Value-to-Value Relationships (Core structure)
         { source: "openness", target: "teamwork", value: 1, type: "positive", relationship: "value" },
         { source: "teamwork", target: "task_completion", value: 1, type: "positive", relationship: "value" },
         { source: "task_completion", target: "self_improvement", value: 1, type: "positive", relationship: "value" },
@@ -42,53 +57,74 @@ const graphData = {
         { source: "openness", target: "self_improvement", value: 1, type: "positive", relationship: "value" },
         { source: "teamwork", target: "integrity", value: 1, type: "positive", relationship: "value" },
 
-        // 2. 开放交流的直接行为影响
+        // 2. Direct Behavior to Value Links (Positive)
         { source: "knowledge_sharing", target: "openness", value: 1, type: "positive", relationship: "direct" },
         { source: "capability_monitoring", target: "openness", value: 1, type: "positive", relationship: "direct" },
         { source: "talent_flow", target: "openness", value: 1, type: "positive", relationship: "direct" },
-        { source: "closed_system", target: "openness", value: -1, type: "negative", relationship: "direct" },
-
-        // 3. 团队协作的直接行为影响
         { source: "distributed_cognition", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "innovation_network", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "team_goal_alignment", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
-        { source: "local_optimization", target: "teamwork", value: -1, type: "negative", relationship: "direct" },
-
-        // 4. 任务达成的直接行为影响
         { source: "task_feedback", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
         { source: "info_system", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
         { source: "feedback_channel", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
-
-        // 5. 自主精进的直接行为影响
         { source: "value_selection", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
         { source: "rapid_iteration", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
         { source: "system_balance", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
-        { source: "perfect_planning", target: "self_improvement", value: -1, type: "negative", relationship: "direct" },
-
-        // 6. 诚实守信的直接行为影响
         { source: "negotiation", target: "integrity", value: 1, type: "positive", relationship: "direct" },
         { source: "risk_monitoring", target: "integrity", value: 1, type: "positive", relationship: "direct" },
         { source: "trust_verification", target: "integrity", value: 1, type: "positive", relationship: "direct" },
+
+        // 3. Direct Behavior to Value Links (Negative)
+        { source: "closed_system", target: "openness", value: -1, type: "negative", relationship: "direct" },
+        { source: "local_optimization", target: "teamwork", value: -1, type: "negative", relationship: "direct" },
+        { source: "perfect_planning", target: "self_improvement", value: -1, type: "negative", relationship: "direct" },
         { source: "information_asymmetry", target: "integrity", value: -1, type: "negative", relationship: "direct" },
         { source: "blind_trust", target: "integrity", value: -1, type: "negative", relationship: "direct" },
 
-        // 7. 跨价值观的行为影响
+        // 4. Cross-Value Behavior Links
         { source: "knowledge_sharing", target: "teamwork", value: 1, type: "positive", relationship: "cross" },
         { source: "distributed_cognition", target: "openness", value: 1, type: "positive", relationship: "cross" },
         { source: "task_feedback", target: "integrity", value: 1, type: "positive", relationship: "cross" },
         { source: "talent_flow", target: "self_improvement", value: 1, type: "positive", relationship: "cross" },
         { source: "info_system", target: "openness", value: 1, type: "positive", relationship: "cross" },
-        { source: "local_optimization", target: "integrity", value: -1, type: "negative", relationship: "cross" },
-        { source: "closed_system", target: "teamwork", value: -1, type: "negative", relationship: "cross" },
-        { source: "blind_trust", target: "task_completion", value: -1, type: "negative", relationship: "cross" },
-
-        // 8. 额外的跨价值观行为影响
         { source: "innovation_network", target: "self_improvement", value: 1, type: "positive", relationship: "cross" },
         { source: "system_balance", target: "teamwork", value: 1, type: "positive", relationship: "cross" },
         { source: "risk_monitoring", target: "openness", value: 1, type: "positive", relationship: "cross" },
         { source: "rapid_iteration", target: "task_completion", value: 1, type: "positive", relationship: "cross" },
+
+        // 5. Negative Cross-Value Behavior Links
+        { source: "local_optimization", target: "integrity", value: -1, type: "negative", relationship: "cross" },
+        { source: "closed_system", target: "teamwork", value: -1, type: "negative", relationship: "cross" },
+        { source: "blind_trust", target: "task_completion", value: -1, type: "negative", relationship: "cross" },
         { source: "perfect_planning", target: "teamwork", value: -1, type: "negative", relationship: "cross" },
-        { source: "information_asymmetry", target: "openness", value: -1, type: "negative", relationship: "cross" }
+        { source: "information_asymmetry", target: "openness", value: -1, type: "negative", relationship: "cross" },
+
+        // 6. Philosophy to Values Links (New addition)
+        { source: "growth_mindset", target: "openness", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "holistic_optimization", target: "teamwork", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "result_oriented", target: "task_completion", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "experimental_mindset", target: "self_improvement", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "continuous_verification", target: "integrity", value: 1, type: "positive", relationship: "philosophy" },
+
+        // 7. Negative Philosophy to Values Links
+        { source: "fixed_mindset", target: "openness", value: -1, type: "negative", relationship: "philosophy" },
+        { source: "local_mindset", target: "teamwork", value: -1, type: "negative", relationship: "philosophy" },
+        { source: "process_oriented", target: "task_completion", value: -1, type: "negative", relationship: "philosophy" },
+        { source: "perfect_mindset", target: "self_improvement", value: -1, type: "negative", relationship: "philosophy" },
+        { source: "static_promise", target: "integrity", value: -1, type: "negative", relationship: "philosophy" },
+
+        // 8. Philosophy to Behavior Links
+        { source: "growth_mindset", target: "knowledge_sharing", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "holistic_optimization", target: "team_goal_alignment", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "result_oriented", target: "task_feedback", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "experimental_mindset", target: "rapid_iteration", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "continuous_verification", target: "trust_verification", value: 1, type: "positive", relationship: "philosophy" },
+
+        // 9. Cross-Philosophy Links (showing relationships between different mindsets)
+        { source: "growth_mindset", target: "experimental_mindset", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "holistic_optimization", target: "result_oriented", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "experimental_mindset", target: "continuous_verification", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "result_oriented", target: "continuous_verification", value: 1, type: "positive", relationship: "philosophy" }
     ]
 };
 
@@ -126,7 +162,7 @@ const config = {
             text: "#ffffff"
         }
     },
-    
+
     linkDistance: 100, // 增加连接距离，让节点间距更大
     charge: -400, // 增加排斥力，避免节点重叠
     
