@@ -99,7 +99,7 @@ const graphData = {
             id: "wbs_decomposition", 
             group: "behaviors", 
             label: "模块化/专业化拆解WBS", 
-            description: "将团队任务拆解为可分配的个体工作包",
+            description: "将团队任务拆解为可管理的个体工作包",
             type: "positive" 
         },
         { 
@@ -148,7 +148,7 @@ const graphData = {
         { source: "process_optimization", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "innovation_network", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
         { source: "team_goal_alignment", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
-        { source: "task_feedback", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
+        { source: "task_feedback", target: "team_task_completion", value: 1, type: "positive", relationship: "direct" },
         { source: "info_system", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
         { source: "feedback_channel", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
         { source: "value_selection", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
@@ -157,6 +157,13 @@ const graphData = {
         { source: "negotiation", target: "integrity", value: 1, type: "positive", relationship: "direct" },
         { source: "risk_monitoring", target: "integrity", value: 1, type: "positive", relationship: "direct" },
         { source: "trust_verification", target: "integrity", value: 1, type: "positive", relationship: "direct" },
+        { 
+            source: "team_capability_chain", 
+            target: "team_task_completion", 
+            value: 1, 
+            type: "positive", 
+            relationship: "direct" 
+        },
 
         // 3. Direct Behavior to Value Links (Negative)
         { source: "closed_system", target: "openness", value: -1, type: "negative", relationship: "direct" },
@@ -241,11 +248,10 @@ const graphData = {
         
         // WBS分解相关
 { source: "wbs_decomposition", target: "individual_task_completion", value: 1, type: "positive", relationship: "direct" },
-{ source: "wbs_decomposition", target: "team_task_completion", value: -1, type: "negative", relationship: "direct" },
+{ source: "wbs_decomposition", target: "team_task_completion", value: 1, type: "positive", relationship: "direct" },
 
 // 个体任务达成相关
 { source: "individual_task_completion", target: "team_task_completion", value: 1, type: "positive", relationship: "direct" },
-{ source: "individual_task_completion", target: "local_optimization", value: 1, type: "positive", relationship: "direct" },
 { source: "individual_task_completion", target: "global_optimization", value: -1, type: "negative", relationship: "direct" },
 
 // 优化关系
@@ -273,15 +279,14 @@ const graphData = {
 { source: "wbs_decomposition", target: "team_goal_alignment", value: -1, type: "negative", relationship: "cross" }, // WBS分解可能影响目标对齐
 
 // 3. Individual to Team Performance
-{ source: "individual_task_completion", target: "task_feedback", value: 1, type: "positive", relationship: "direct" }, // 个体任务完成需要反馈
+{ source: "task_feedback", target: "individual_task_completion", value: 1, type: "positive", relationship: "direct" }, // 个体任务完成需要反馈
 { source: "individual_task_completion", target: "info_system", value: 1, type: "positive", relationship: "direct" }, // 个体任务完成需要信息系统支持
 { source: "team_task_completion", target: "team_goal_alignment", value: 1, type: "positive", relationship: "direct" }, // 团队任务完成促进目标对齐
 
 // 4. Philosophy and Mindset Links
 { source: "holistic_optimization", target: "team_task_completion", value: 1, type: "positive", relationship: "philosophy" }, // 整体优化思维促进团队任务完成
 { source: "result_oriented", target: "individual_task_completion", value: 1, type: "positive", relationship: "philosophy" }, // 结果导向促进个体任务完成
-{ source: "fixed_mindset", target: "wbs_decomposition", value: 1, type: "positive", relationship: "philosophy" }, // 静态思维倾向于机械分解
-{ source: "process_oriented", target: "wbs_decomposition", value: 1, type: "positive", relationship: "philosophy" }, // 过程导向促进WBS分解
+{ source: "fixed_mindset", target: "wbs_decomposition", value: -1, type: "negative", relationship: "philosophy" }, // 静态思维倾向于机械分解
 
 // 5. Negative Impact Links
 { source: "perfect_planning", target: "wbs_decomposition", value: 1, type: "positive", relationship: "cross" }, // 完美主义促进过度分解
@@ -299,7 +304,9 @@ const graphData = {
     value: 1, 
     type: "positive", 
     relationship: "direct" 
-}
+},
+{ source: "task_feedback", target: "capability_baseline", value: 1, type: "positive", relationship: "direct" },
+{ source: "task_feedback", target: "teamwork", value: 1, type: "positive", relationship: "direct" }
     ]
 };
 
@@ -307,8 +314,7 @@ const graphData = {
 const config = {
     nodeRadius: 8,
     valueNodeRadius: 12,
-    linkDistance: 80, // Reduced from 100
-    charge: -300, // Reduced from -400 for less repulsion
+    
     width: 1000,
     height: 600,
     zoom: {
@@ -479,7 +485,7 @@ function initGraph() {
         })
         .attr("opacity", d => {
             // 价值观之间的连接更突出
-            return d.relationship === "value" ? 0.8 : 0.6;
+            return d.relationship === "value" ? 1 : 0.1;
         })
         .attr("marker-end", d => `url(#arrow-${d.type})`);
 
@@ -588,7 +594,10 @@ function initGraph() {
     }
 
     function handleNodeUnhover() {
-        link.attr("opacity", 1);
+        link.attr("opacity", d => {
+            // Sets initial opacity based on relationship type
+            return d.relationship === "value" ? 1 : 0.1;
+        });
         node.attr("opacity", 1);
         label.attr("opacity", 1);
         clearDescription();
@@ -621,10 +630,7 @@ function initGraph() {
     setTimeout(resetView, 100);
 }
 
-// Keep the updateDescription and clearDescription functions as they are...
 
-// Add theme change listener
-document.addEventListener('themeChanged', initGraph);
 
 // Update description panel
 function updateDescription(node) {
@@ -646,6 +652,8 @@ function clearDescription() {
     }
 }
 
+// Add theme change listener
+document.addEventListener('themeChanged', initGraph);
 // Initialize graph when document is ready
 document.addEventListener("DOMContentLoaded", initGraph);
 
