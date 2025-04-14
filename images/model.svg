@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" style="background: #ffffff;">
+    <!-- Definitions for gradients and markers -->
+    <defs>
+        <!-- Positive impact gradient -->
+        <linearGradient id="positiveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:0.2"/>
+            <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:0.6"/>
+        </linearGradient>
+        <!-- Negative impact gradient -->
+        <linearGradient id="negativeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#f44336;stop-opacity:0.2"/>
+            <stop offset="100%" style="stop-color:#f44336;stop-opacity:0.6"/>
+        </linearGradient>
+        <!-- Arrow markers -->
+        <marker id="positiveArrow" viewBox="0 0 10 10" refX="9" refY="5"
+                markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10" fill="#4CAF50"/>
+        </marker>
+        <marker id="negativeArrow" viewBox="0 0 10 10" refX="9" refY="5"
+                markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10" fill="#f44336"/>
+        </marker>
+    </defs>
+
+    <!-- Values Layer (Top) -->
+    <g transform="translate(0, 50)">
+        <rect x="400" y="0" width="400" height="100" rx="15" fill="#3f51b5" opacity="0.9"/>
+        <text x="600" y="35" text-anchor="middle" fill="white" font-size="24" font-weight="bold">价值观层</text>
+        <text x="600" y="70" text-anchor="middle" fill="white" font-size="16">开放、诚信、创新、协作</text>
+    </g>
+
+    <!-- World View Layer (Middle) -->
+    <g transform="translate(0, 200)">
+        <rect x="300" y="0" width="600" height="100" rx="15" fill="#00bcd4" opacity="0.9"/>
+        <text x="600" y="35" text-anchor="middle" fill="white" font-size="24" font-weight="bold">世界观层</text>
+        <text x="600" y="70" text-anchor="middle" fill="white" font-size="16">系统论、控制论、信息论</text>
+    </g>
+
+    <!-- Behaviors Layer (Bottom) -->
+    <g transform="translate(0, 400)">
+        <rect x="200" y="0" width="800" height="200" rx="15" fill="#757de8" opacity="0.8"/>
+        <text x="600" y="40" text-anchor="middle" fill="white" font-size="24" font-weight="bold">行为层</text>
+        
+        <!-- Behavior Nodes -->
+        <g transform="translate(250, 80)">
+            <circle cx="0" cy="0" r="40" fill="white" opacity="0.9"/>
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="14">信息共享</text>
+        </g>
+        
+        <g transform="translate(450, 80)">
+            <circle cx="0" cy="0" r="40" fill="white" opacity="0.9"/>
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="14">团队协作</text>
+        </g>
+        
+        <g transform="translate(650, 80)">
+            <circle cx="0" cy="0" r="40" fill="white" opacity="0.9"/>
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="14">持续改进</text>
+        </g>
+
+        <g transform="translate(850, 80)">
+            <circle cx="0" cy="0" r="40" fill="white" opacity="0.9"/>
+            <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="14">承诺兑现</text>
+        </g>
+    </g>
+
+    <!-- Impact Arrows -->
+    <!-- Positive impacts -->
+    <g class="impacts">
+        <!-- From Behaviors to Values -->
+        <path d="M 250 480 Q 400 300 600 150" stroke="url(#positiveGradient)" stroke-width="3" fill="none" marker-end="url(#positiveArrow)" opacity="0.6">
+            <title>信息共享促进开放文化</title>
+        </path>
+        <path d="M 450 480 Q 500 350 600 150" stroke="url(#positiveGradient)" stroke-width="3" fill="none" marker-end="url(#positiveArrow)" opacity="0.6">
+            <title>团队协作增强创新能力</title>
+        </path>
+        <path d="M 650 480 Q 600 350 600 150" stroke="url(#positiveGradient)" stroke-width="3" fill="none" marker-end="url(#positiveArrow)" opacity="0.6">
+            <title>持续改进提升组织活力</title>
+        </path>
+        <path d="M 850 480 Q 700 300 600 150" stroke="url(#positiveGradient)" stroke-width="3" fill="none" marker-end="url(#positiveArrow)" opacity="0.6">
+            <title>承诺兑现建立诚信基础</title>
+        </path>
+
+        <!-- Negative impacts (red arrows) -->
+        <path d="M 250 480 Q 300 400 450 480" stroke="url(#negativeGradient)" stroke-width="3" fill="none" marker-end="url(#negativeArrow)" opacity="0.6">
+            <title>信息过载影响协作效率</title>
+        </path>
+        <path d="M 650 480 Q 700 400 850 480" stroke="url(#negativeGradient)" stroke-width="3" fill="none" marker-end="url(#negativeArrow)" opacity="0.6">
+            <title>过度改进影响承诺达成</title>
+        </path>
+    </g>
+
+    <!-- Interactive Hover Areas -->
+    <g class="hover-areas" fill="transparent" opacity="0">
+        <!-- Value nodes -->
+        <circle cx="600" y="100" r="30" class="interactive-node">
+            <title>价值观核心</title>
+        </circle>
+        <!-- World view node -->
+        <circle cx="600" y="250" r="30" class="interactive-node">
+            <title>世界观基础</title>
+        </circle>
+        <!-- Behavior nodes -->
+        <circle cx="250" y="480" r="30" class="interactive-node">
+            <title>信息共享行为</title>
+        </circle>
+        <circle cx="450" y="480" r="30" class="interactive-node">
+            <title>团队协作行为</title>
+        </circle>
+        <circle cx="650" y="480" r="30" class="interactive-node">
+            <title>持续改进行为</title>
+        </circle>
+        <circle cx="850" y="480" r="30" class="interactive-node">
+            <title>承诺兑现行为</title>
+        </circle>
+    </g>
+
+    <!-- Animation definitions -->
+    <style>
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        .impacts path {
+            animation: pulse 3s infinite;
+        }
+        .interactive-node:hover {
+            fill: rgba(255,255,255,0.2);
+            cursor: pointer;
+        }
+        .impacts path:hover {
+            opacity: 1;
+            stroke-width: 4;
+        }
+    </style>
+</svg>

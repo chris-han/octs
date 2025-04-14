@@ -292,20 +292,52 @@
                     </table>
                 </div>
             </div>
-            <!-- 互动式图表 -->
-            <div class="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 aos-init aos-animate" data-aos="fade-up">
-                <h3 class="text-2xl font-bold mb-6">价值体系互动关系</h3>
-                <div class="aspect-video relative overflow-hidden rounded-lg">
-                    <img src="images/model.jpg" alt="团队协作图" class="w-full h-full object-cover">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                        <div class="p-8">
-                            <h4 class="text-white text-xl font-bold mb-2">文化价值体系互动模型</h4>
-                            <p class="text-white/90">通过系统论视角可视化展示价值观体系如何协同工作</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+      <!-- 互动式图表 -->
+<!-- Replace the existing graph container with this -->
+<div class="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 aos-init aos-animate" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">价值体系互动关系</h3>
+    
+    <div class="relative">
+        <!-- Controls container -->
+        <div id="culture-graph-controls" class="absolute top-4 left-4 z-10"></div>
+        
+        <!-- The actual graph -->
+        <svg id="culture-graph" class="w-full bg-white dark:bg-gray-800 transition-colors duration-200" style="height: 600px;"></svg>
+        
+        <!-- Description panel -->
+        <div id="graph-description" class="absolute top-4 right-4 bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg max-w-xs transition-colors duration-200">
+            <p class="text-gray-500 dark:text-gray-300">悬停在节点上查看详细信息</p>
+        </div>
+    </div>
+
+    <!-- Legend with dark mode support -->
+    <div class="mt-6 flex flex-wrap gap-6 justify-center">
+        <div class="flex items-center">
+            <div class="w-4 h-4 rounded-full bg-primary dark:bg-primary-light"></div>
+            <span class="ml-2 text-sm dark:text-gray-200">价值观节点</span>
+        </div>
+        <div class="flex items-center">
+            <div class="w-4 h-4 rounded-full bg-green-500 dark:bg-green-400"></div>
+            <span class="ml-2 text-sm dark:text-gray-200">正向行为</span>
+        </div>
+        <div class="flex items-center">
+            <div class="w-4 h-4 rounded-full bg-red-500 dark:bg-red-400"></div>
+            <span class="ml-2 text-sm dark:text-gray-200">负向行为</span>
+        </div>
+        <div class="flex items-center">
+            <div class="w-4 h-1 bg-green-500 dark:bg-green-400"></div>
+            <span class="ml-2 text-sm dark:text-gray-200">正向影响</span>
+        </div>
+        <div class="flex items-center">
+            <div class="w-4 h-1 bg-red-500 dark:bg-red-400"></div>
+            <span class="ml-2 text-sm dark:text-gray-200">负向影响</span>
+        </div>
+    </div>
+</div>
+
+
+
         </section>
         <!-- 领导力体系 -->
         <section id="leadership" class="mb-20" data-aos="fade-up">
@@ -1043,6 +1075,92 @@ td ul li:last-child {
             z-index: 1;
         }
         
+        /* Add to main.css */
+#culture-graph {
+    background-color: var(--surface-light);
+    border-radius: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.dark #culture-graph {
+    background-color: var(--surface-dark);
+}
+
+#culture-graph text {
+    fill: var(--text-primary-light);
+    transition: fill 0.3s ease;
+}
+
+.dark #culture-graph text {
+    fill: var(--text-primary-dark);
+}
+
+#culture-graph-controls {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+}
+
+.reset-view-btn {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reset-view-btn:before {
+    content: "↺";
+    font-size: 1.25rem;
+}
+
+/* Graph description panel dark mode */
+#graph-description {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark #graph-description {
+    background-color: var(--surface-dark);
+    color: var(--text-primary-dark);
+}
+
+.dark #graph-description p {
+    color: var(--text-secondary-dark);
+}
+
+#culture-graph-controls {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.zoom-btn {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+}
+
+.zoom-btn:hover {
+    transform: scale(1.05);
+}
+
+.reset-view-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reset-view-btn::before {
+    content: "↺";
+    font-size: 1.25rem;
+}
         </style>
     <script>
         tailwind.config = {
@@ -1066,5 +1184,9 @@ td ul li:last-child {
         }
     </script>
     <script src="js/main.js"></script>
+    <!-- Include D3.js library -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<!-- Include our graph script -->
+<script src="js/culture-graph.js"></script>      
 </body>
 </html>

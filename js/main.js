@@ -24,6 +24,8 @@ if (localStorage.getItem('theme') === 'dark' ||
 function toggleTheme() {
     html.classList.toggle('dark');
     localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    // Dispatch theme change event
+    document.dispatchEvent(new Event('themeChanged'));    
 }
 
 // 桌面主题切换
