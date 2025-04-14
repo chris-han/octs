@@ -45,7 +45,60 @@ const graphData = {
         { id: "local_mindset", group: "philosophy", label: "局部思维", description: "只关注局部利益，忽视整体效果", type: "negative" },
         { id: "process_oriented", group: "philosophy", label: "过程导向思维", description: "过分关注执行过程，忽视实际成果", type: "negative" },
         { id: "perfect_mindset", group: "philosophy", label: "完美主义思维", description: "过分追求完美规划，导致行动迟缓", type: "negative" },
-        { id: "static_promise", group: "philosophy", label: "静态承诺思维", description: "依赖一次性承诺，缺乏持续验证", type: "negative" }
+        { id: "static_promise", group: "philosophy", label: "静态承诺思维", description: "依赖一次性承诺，缺乏持续验证", type: "negative" },
+        
+        // 新增节点
+        { 
+            id: "team_capability_chain", 
+            group: "behaviors", 
+            label: "团队能力链条", 
+            description: "团队执行力由个体能力链条构成，最弱环节决定整体上限",
+            type: "positive" 
+        },
+        { 
+            id: "capability_baseline", 
+            group: "behaviors", 
+            label: "能力基线管理", 
+            description: "设置团队与个体的能力基线标准，确保整体执行力",
+            type: "positive" 
+        },
+        { 
+            id: "periodic_assessment", 
+            group: "behaviors", 
+            label: "定期考核调岗", 
+            description: "通过定期评估和岗位调整维护团队能力结构",
+            type: "positive" 
+        },
+        { 
+            id: "weak_link_detection", 
+            group: "behaviors", 
+            label: "薄弱环节识别", 
+            description: "识别并强化团队能力链条中的薄弱环节",
+            type: "positive" 
+        },
+        { 
+            id: "systematic_capability", 
+            group: "philosophy", 
+            label: "系统能力观", 
+            description: "将团队视为有机整体，重视能力体系的系统性建设",
+            type: "positive" 
+        },
+
+        // 添加相关的消极行为节点
+        { 
+            id: "neglect_weakness", 
+            group: "behaviors", 
+            label: "忽视能力短板", 
+            description: "忽视团队中的能力短板，导致整体效能受限",
+            type: "negative" 
+        },
+        { 
+            id: "static_assessment", 
+            group: "behaviors", 
+            label: "静态考核模式", 
+            description: "采用固定的考核方式，缺乏动态调整机制",
+            type: "negative" 
+        }
     ],
     links: [
         // 1. Value-to-Value Relationships (Core structure)
@@ -124,7 +177,36 @@ const graphData = {
         { source: "growth_mindset", target: "experimental_mindset", value: 1, type: "positive", relationship: "philosophy" },
         { source: "holistic_optimization", target: "result_oriented", value: 1, type: "positive", relationship: "philosophy" },
         { source: "experimental_mindset", target: "continuous_verification", value: 1, type: "positive", relationship: "philosophy" },
-        { source: "result_oriented", target: "continuous_verification", value: 1, type: "positive", relationship: "philosophy" }
+        { source: "result_oriented", target: "continuous_verification", value: 1, type: "positive", relationship: "philosophy" },
+        // 核心价值观关联
+        { source: "team_capability_chain", target: "teamwork", value: 1, type: "positive", relationship: "direct" },
+        { source: "capability_baseline", target: "task_completion", value: 1, type: "positive", relationship: "direct" },
+        { source: "periodic_assessment", target: "self_improvement", value: 1, type: "positive", relationship: "direct" },
+        
+        // 行为节点间的关联
+        { source: "team_capability_chain", target: "capability_baseline", value: 1, type: "positive", relationship: "direct" },
+        { source: "capability_baseline", target: "periodic_assessment", value: 1, type: "positive", relationship: "direct" },
+        { source: "periodic_assessment", target: "weak_link_detection", value: 1, type: "positive", relationship: "direct" },
+        { source: "weak_link_detection", target: "team_capability_chain", value: 1, type: "positive", relationship: "direct" },
+        
+        // 思维模式关联
+        { source: "systematic_capability", target: "team_capability_chain", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "systematic_capability", target: "capability_baseline", value: 1, type: "positive", relationship: "philosophy" },
+        { source: "holistic_optimization", target: "systematic_capability", value: 1, type: "positive", relationship: "philosophy" },
+        
+        // 消极行为的影响
+        { source: "neglect_weakness", target: "team_capability_chain", value: -1, type: "negative", relationship: "direct" },
+        { source: "static_assessment", target: "periodic_assessment", value: -1, type: "negative", relationship: "direct" },
+        
+        // 跨价值观的影响
+        { source: "team_capability_chain", target: "task_completion", value: 1, type: "positive", relationship: "cross" },
+        { source: "capability_baseline", target: "self_improvement", value: 1, type: "positive", relationship: "cross" },
+        { source: "periodic_assessment", target: "teamwork", value: 1, type: "positive", relationship: "cross" },
+        
+        // 与现有节点的关联
+        { source: "team_goal_alignment", target: "team_capability_chain", value: 1, type: "positive", relationship: "direct" },
+        { source: "capability_monitoring", target: "capability_baseline", value: 1, type: "positive", relationship: "direct" },
+        { source: "talent_flow", target: "periodic_assessment", value: 1, type: "positive", relationship: "direct" }
     ]
 };
 
