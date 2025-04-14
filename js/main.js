@@ -38,54 +38,61 @@ const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawer-overlay');
 const closeDrawer = document.getElementById('close-drawer');
 
-menuToggle.addEventListener('click', function() {
-    drawer.classList.add('open');
-    drawerOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-});
-
-function closeDrawerFunc() {
-    drawer.classList.remove('open');
-    drawerOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-closeDrawer.addEventListener('click', closeDrawerFunc);
-drawerOverlay.addEventListener('click', closeDrawerFunc);
-
-// 移动导航中的链接点击后关闭抽屉
-drawer.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        closeDrawerFunc();
+if (menuToggle && drawer && drawerOverlay && closeDrawer) {
+    menuToggle.addEventListener('click', function() {
+        drawer.classList.add('open');
+        drawerOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
     });
-});
+
+    function closeDrawerFunc() {
+        drawer.classList.remove('open');
+        drawerOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    closeDrawer.addEventListener('click', closeDrawerFunc);
+    drawerOverlay.addEventListener('click', closeDrawerFunc);
+
+    // Close drawer when clicking navigation links
+    drawer.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', closeDrawerFunc);
+    });
+}
 
 // 滚动进度条
 window.onscroll = function() {
-    // 滚动进度
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = (winScroll / height) * 100;
-    document.getElementById("progressBar").style.width = scrolled + "%";
+    const progressBar = document.getElementById("progressBar");
+    if (progressBar) {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + "%";
+    }
 
-    // 返回顶部按钮
+    // Back to top button
     const backToTopButton = document.getElementById('back-to-top');
-    if (winScroll > 300) {
-        backToTopButton.classList.remove('opacity-0', 'invisible');
-        backToTopButton.classList.add('opacity-100', 'visible');
-    } else {
-        backToTopButton.classList.remove('opacity-100', 'visible');
-        backToTopButton.classList.add('opacity-0', 'invisible');
+    if (backToTopButton) {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+            backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+            backToTopButton.classList.remove('opacity-100', 'visible');
+            backToTopButton.classList.add('opacity-0', 'invisible');
+        }
     }
 };
 
-// 返回顶部按钮点击事件
-document.getElementById('back-to-top').addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
+    // Back to top button click handler
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
 // 平滑滚动到锚点
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -102,10 +109,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 预加载器
+
+// 预加载动画
 window.addEventListener('load', function() {
     setTimeout(function() {
         const preloader = document.querySelector('.preloader');
-        preloader.classList.add('hidden-preloader');
+        if (preloader) {
+            preloader.classList.add('hidden-preloader');
+        }
     }, 500);
 });
