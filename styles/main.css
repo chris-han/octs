@@ -325,3 +325,163 @@ h1, h2, h3, h4, h5, h6 {
     height: 520px; /* Set fixed height for consistent flipping */
     position: relative;
 }
+
+/* Add these styles to your existing main.css */
+
+/* Table styles */
+.responsive-table {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.responsive-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.responsive-table th {
+    background-color: var(--surface-light);
+    color: var(--text-secondary-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table tr:last-child td {
+    border-bottom: none;
+}
+
+.dark .responsive-table th {
+    background-color: var(--surface-dark);
+    color: var(--text-secondary-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .responsive-table td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile card view */
+@media (max-width: 640px) {
+    .mobile-cards .grid {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .mobile-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-card h3 {
+        color: var(--text-primary-light);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .mobile-card .content {
+        margin-top: 0.5rem;
+    }
+
+    .mobile-card .label {
+        font-weight: 600;
+        color: var(--text-primary-light);
+        margin-bottom: 0.25rem;
+    }
+
+    .mobile-card ul {
+        margin-top: 0.5rem;
+        padding-left: 1.25rem;
+    }
+
+    .mobile-card li {
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary-light);
+    }
+
+    .dark .mobile-card {
+        background-color: var(--surface-dark);
+    }
+
+    .dark .mobile-card h3,
+    .dark .mobile-card .label {
+        color: var(--text-primary-dark);
+    }
+
+    .dark .mobile-card li {
+        color: var(--text-secondary-dark);
+    }
+}
+
+/* List styles within table and cards */
+.list-disc {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+}
+
+.list-disc li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary-light);
+}
+
+.dark .list-disc li {
+    color: var(--text-secondary-dark);
+}
+
+/* Spacing utilities */
+.space-y-2 > * + * {
+    margin-top: 0.5rem;
+}
+
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+
+/* Text utilities */
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* Add this to your existing CSS */
+@media (min-width: 641px) {
+    .mobile-cards {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .responsive-table {
+        display: none;
+    }
+}
