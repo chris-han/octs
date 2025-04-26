@@ -191,3 +191,79 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     visibility: visible;
 }
+
+/* Footer grid specific styles */
+.footer-grid-outer {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(400px, 2fr); /* First column min width for description */
+    gap: 2rem;
+}
+
+.footer-grid-inner {
+    display: grid;
+    /* Make last column slightly wider to prevent wrapping of 联系我们 content */
+    grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) minmax(160px, 1.2fr);
+    gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .footer-grid-outer {
+        grid-template-columns: minmax(120px, 20%) minmax(250px, 80%);
+        gap: 1rem;
+    }
+    
+    .footer-grid-inner {
+        grid-template-columns: minmax(75px, 23%) minmax(70px, 25%) minmax(110px, 51%);
+        gap: 1.5rem;
+    }
+
+    /* Ensure description text wraps properly */
+    .footer-grid-outer > div:first-child {
+        max-width: 250px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-grid-outer {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .footer-grid-inner {
+        grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(140px, 1.2fr);
+        gap: 1rem;
+    }
+
+    /* Allow description to use full width on mobile */
+    .footer-grid-outer > div:first-child {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-grid-inner {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Prevent extreme text squishing and ensure proper text wrapping */
+.footer-grid-outer > div,
+.footer-grid-inner > div {
+    min-width: 0; /* Reset min-width to allow grid to handle sizing */
+    width: 100%;
+}
+
+/* Specific styles for the description column */
+.footer-grid-outer > div:first-child {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Ensure description text has proper line height for readability */
+.footer-grid-outer > div:first-child p {
+    line-height: 1.6;
+}
