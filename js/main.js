@@ -121,3 +121,25 @@ window.addEventListener('load', function() {
         }
     }, 500);
 });
+
+
+// Flip card functionality
+document.querySelectorAll('.advocate-card').forEach(card => {
+    card.addEventListener('click', function() {
+        this.classList.toggle('flipped');
+    });
+});
+
+// Prevent flip when clicking social links
+document.querySelectorAll('.social-icon').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent card flip when clicking social links
+    });
+});
+
+// Prevent flip when clicking contact links
+document.querySelectorAll('.contact-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent card flip when clicking contact links
+    });
+});
