@@ -311,7 +311,6 @@ h1, h2, h3, h4, h5, h6 {
 .advocate-card-back {
     background: white;
     transform: rotateY(180deg);
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -323,6 +322,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Adjust existing advocate-card styles */
 .advocate-card {
-    height: 480px; /* Set fixed height for consistent flipping */
+    height: 520px; /* Set fixed height for consistent flipping */
     position: relative;
 }
